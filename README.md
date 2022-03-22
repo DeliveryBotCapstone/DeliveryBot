@@ -17,10 +17,11 @@
 ## 기술 스택
 
 ### TurtleBot3
-<img alt="ROS" src ="https://img.shields.io/badge/ROS-22314E.svg?&style=for-the-badge&logo=ROS&logoColor=white"/> <img alt="Google" src ="https://img.shields.io/badge/Google Cartographer-4285F4.svg?&style=for-the-badge&logo=Google&logoColor=white"/>
+<img alt="ROS" src ="https://img.shields.io/badge/ROS-22314E.svg?&style=for-the-badge&logo=ROS&logoColor=white"/> <img alt="Raspberry Pi" src ="https://img.shields.io/badge/Raspberry Pi-A22846.svg?&style=for-the-badge&logo=Raspberry Pi&logoColor=white"/> <img alt="Google" src ="https://img.shields.io/badge/Google Cartographer-4285F4.svg?&style=for-the-badge&logo=Google&logoColor=white"/>
+
 
 ### 어플리케이션
-<img alt="Kotlin" src ="https://img.shields.io/badge/Kotlin-7F52FF.svg?&style=for-the-badge&logo=Kotlin&logoColor=white"/> <img alt="AmazonAWS" src ="https://img.shields.io/badge/Amazon EC2-232F3E.svg?&style=for-the-badge&logo=AmazonAWS&logoColor=white"/>
+<img alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white"/> <img alt="Kotlin" src ="https://img.shields.io/badge/Kotlin-7F52FF.svg?&style=for-the-badge&logo=Kotlin&logoColor=white"/> <img alt="AmazonAWS" src ="https://img.shields.io/badge/Amazon EC2-232F3E.svg?&style=for-the-badge&logo=AmazonAWS&logoColor=white"/>
 
 ## '택배 봇'에 사용된 TurtleBot3 설명
 * 내용 추가 예정
