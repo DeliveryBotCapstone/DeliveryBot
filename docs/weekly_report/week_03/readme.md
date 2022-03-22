@@ -1,4 +1,4 @@
-># 2022-03-16(수) 교수님과의 미팅 내용
+># 2022-03-16(수) 교수님과 미팅 내용
 
 ## TurtleBot3
 * 지금까지 지도를 그리면서 생긴 오차는 복도같이 단조롭고 장애물이 없는 공간을 탐지거리가 짧은 라이더센서를 사용해 오차가 발생한 것이라 가정.
@@ -6,7 +6,7 @@
 * YDLiDAR사의 X4 LiDAR Sensor</br>
 https://www.devicemart.co.kr/goods/view?no=12170775&gclid=CjwKCAjwlcaRBhBYEiwAK341jd6-wrE6VMM0Ox0ejgpcXVua4C5a3F90Q6Nmaf9m4Id5F80FJ6B3mBoC4doQAvD_BwE
 
-># 2022-03-17(목) 미팅 내용
+># 2022-03-17(목) 정기 회의 내용
 
 ## 어플리케이션
 ### 현규
