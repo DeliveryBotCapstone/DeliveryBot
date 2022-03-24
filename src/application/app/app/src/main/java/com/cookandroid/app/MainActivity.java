@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -24,7 +25,6 @@ import java.net.Socket;
 public class MainActivity extends AppCompatActivity {
     EditText edit;
     Button button;
-    String rmsg;
 
     static final int SMS_RECEIVE_PERMISSON=1;
 
@@ -58,48 +58,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast toast = Toast.makeText(getApplicationContext(), edit.getText().toString(), 0);
                 toast.show();
-
-                TCPclient tcpThread = new TCPclient(edit.getText().toString());
-                Thread thread = new Thread(tcpThread);
-                thread.start();
+                Intent intent = new Intent(getApplicationContext(), MyService.class);
+                startService(intent);
             }
         });
-    }
-    private class TCPclient implements Runnable {
-        private static final String serverIP = "*.*.*.*";
-        private static final int serverPort = 1111;
-        private Socket inetSocket = null;
-        private String msg;
-        private String phoneNum = "xxx-xxxx-xxxx";
-
-        public TCPclient(String msg) {
-            this.msg = msg;
-        }
-
-        public void run() {
-            try {
-                Log.d("TCP", "C: Connecting ... ");
-                inetSocket = new Socket(serverIP, serverPort);
-                try {
-                    Log.d("TCP", "C: Sending ... " + msg);
-                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(inetSocket.getOutputStream())), true);
-                    out.println(msg);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(inetSocket.getInputStream()));
-
-                    rmsg = in.readLine();
-                    Log.d("TCP", "C: Server send to me this message --> " + rmsg);
-
-                    SmsManager sms = SmsManager.getDefault();
-                    sms.sendTextMessage(phoneNum, null, rmsg, null, null);
-
-                } catch (Exception e) {
-                    Log.e("TCP", "C: Error1", e);
-                } finally {
-                    inetSocket.close();
-                }
-            } catch (Exception e) {
-                Log.e("TCP", "C: Error2", e);
-            }
-        }
     }
 }
