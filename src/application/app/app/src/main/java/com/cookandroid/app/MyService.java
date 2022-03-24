@@ -19,9 +19,12 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import static android.content.Intent.getIntent;
+
 public class MyService extends Service {
 
     String rmsg;
+    String msg;
     static final int SMS_RECEIVE_PERMISSON=1;
 
     public MyService() {
@@ -31,13 +34,20 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        MyService.TCPclient tcpThread = new MyService.TCPclient("test");
-        Thread thread = new Thread(tcpThread);
-        thread.start();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent == null) {
+            return Service.START_STICKY;
+        } else {
+            msg = intent.getStringExtra("msg");
+
+            MyService.TCPclient tcpThread = new MyService.TCPclient(msg);
+            Thread thread = new Thread(tcpThread);
+            thread.start();
+        }
+
         return super.onStartCommand(intent, flags, startId);
     }
 

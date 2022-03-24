@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), edit.getText().toString(), 0);
                 toast.show();
                 Intent intent = new Intent(getApplicationContext(), MyService.class);
+                intent.putExtra("msg", edit.getText().toString());
                 startService(intent);
             }
         });
