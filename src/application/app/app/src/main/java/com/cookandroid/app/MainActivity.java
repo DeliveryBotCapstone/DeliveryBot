@@ -8,10 +8,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,32 +22,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import android.telephony.SmsManager;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     EditText edit;
     Button button;
+    TextView tv;
+    String temp;
 
     static final int SMS_SEND_PERMISSON = 1; // SMS 송신 권한 설정용 변수
-
-
-    private static final String CLOUD_VISION_API_KEY = BuildConfig.API_KEY;
-    public static final String FILE_NAME = "temp.jpg";
-    private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
-    private static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";
-    private static final int MAX_LABEL_RESULTS = 10;
-    private static final int MAX_DIMENSION = 1200;
-
-    private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int GALLERY_PERMISSIONS_REQUEST = 0;
-    private static final int GALLERY_IMAGE_REQUEST = 1;
-    public static final int CAMERA_PERMISSIONS_REQUEST = 2;
-    public static final int CAMERA_IMAGE_REQUEST = 3;
-
-    private TextView mImageDetails;
-    private ImageView mMainImage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.button1);
         edit = (EditText) findViewById(R.id.edittext1);
+        tv = (TextView) findViewById(R.id.tv1);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +68,21 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), edit.getText().toString(), 0);
                 toast.show();
 
-                Intent intent = new Intent(getApplicationContext(), MyService.class);
-                intent.putExtra("msg", edit.getText().toString());
-                startService(intent);
+                temp = "0호12345호678공학관 A1404호 박종건";
+
+                int start = temp.indexOf("공학관 ");
+                int end = temp.indexOf("호");
+
+                while (start > end) {
+                    int num = temp.substring(end + 1).indexOf("호");
+                    end += num + 1;
+                }
+                tv.setText(temp.substring((start + 4), end));
+
+
+                // Intent intent = new Intent(getApplicationContext(), MyService.class);
+                // intent.putExtra("msg", edit.getText().toString());
+                // startService(intent);
             }
         });
     }
