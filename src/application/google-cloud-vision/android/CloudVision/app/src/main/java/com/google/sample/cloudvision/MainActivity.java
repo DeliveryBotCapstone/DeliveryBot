@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     static final int SMS_SEND_PERMISSON = 1; // SMS 송신 권한 설정용 변수
     Button button;
-    String test;
+    public static String real_address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyService.class);
-                intent.putExtra("msg", test);
+                intent.putExtra("msg", real_address);
                 startService(intent);
             }
         });
@@ -316,8 +316,19 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             MainActivity activity = mActivityWeakReference.get();
             if (activity != null && !activity.isFinishing()) {
+
+                int start = result.indexOf("공학관");
+                int end = result.indexOf("호");
+
+                while (start > end) {
+                    int num = result.substring(end + 1).indexOf("호");
+                    end += num + 1;
+                }
+                real_address = result.substring((start + 4), end);
+
+
                 TextView imageDetail = activity.findViewById(R.id.image_details);
-                imageDetail.setText(result);
+                imageDetail.setText(real_address);
             }
         }
     }
