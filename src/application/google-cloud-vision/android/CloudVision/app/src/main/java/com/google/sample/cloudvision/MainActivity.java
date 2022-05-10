@@ -79,11 +79,12 @@ public class MainActivity extends AppCompatActivity {
     public static final int CAMERA_PERMISSIONS_REQUEST = 2;
     public static final int CAMERA_IMAGE_REQUEST = 3;
 
-    private TextView mImageDetails;
+    private TextView description;
     private ImageView mMainImage;
+    private EditText editNumber;
 
     static final int SMS_SEND_PERMISSON = 1; // SMS 송신 권한 설정용 변수
-    Button button;
+    Button sendButton;
     public static String real_address;
 
     @Override
@@ -114,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        Button fab = findViewById(R.id.fab);
+        description = findViewById(R.id.description);
+        mMainImage = findViewById(R.id.main_image);
+        editNumber = findViewById(R.id.editNumber);
+        sendButton = (Button) findViewById(R.id.sendButton);
+
         fab.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder
@@ -124,13 +130,11 @@ public class MainActivity extends AppCompatActivity {
             builder.create().show();
         });
 
-        mImageDetails = findViewById(R.id.image_details);
-        mMainImage = findViewById(R.id.main_image);
 
 
-        button = (Button) findViewById(R.id.button1);
 
-        button.setOnClickListener(new View.OnClickListener() {
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MyService.class);
@@ -333,16 +337,20 @@ public class MainActivity extends AppCompatActivity {
                     real_address = result.substring((start + 4), (start + 8));
                 }
 
-
-                TextView imageDetail = activity.findViewById(R.id.image_details);
-                imageDetail.setText(real_address);
+                Button sendButton = activity.findViewById(R.id.sendButton);
+                EditText editNumber = activity.findViewById(R.id.editNumber);
+                TextView description = activity.findViewById(R.id.description);
+                sendButton.setVisibility(View.VISIBLE);
+                editNumber.setVisibility(View.VISIBLE);
+                description.setText("아래 호수가 맞지 않다면 수정하세요.");
+                editNumber.setText(real_address);
             }
         }
     }
 
     private void callCloudVision(final Bitmap bitmap) {
         // Switch text to loading
-        mImageDetails.setText(R.string.loading_message);
+        description.setText(R.string.loading_message);
 
         // Do the real work in an async task, because we need to use the network anyway
         try {
