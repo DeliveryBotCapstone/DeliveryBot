@@ -320,11 +320,18 @@ public class MainActivity extends AppCompatActivity {
                 int start = result.indexOf("공학관");
                 int end = result.indexOf("호");
 
-                while (start > end) {
-                    int num = result.substring(end + 1).indexOf("호");
-                    end += num + 1;
+//                while (start > end) {
+//                    int num = result.substring(end + 1).indexOf("호");
+//                    end += num + 1;
+//                }
+
+//                real_address = result.substring((start + 4), end);
+                if (result.charAt(start + 4) == 'A') {
+                    real_address = result.substring((start + 4), (start + 9));
                 }
-                real_address = result.substring((start + 4), end);
+                else {
+                    real_address = result.substring((start + 4), (start + 8));
+                }
 
 
                 TextView imageDetail = activity.findViewById(R.id.image_details);
