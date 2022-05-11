@@ -146,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                mMainImage.setImageBitmap(null);
+//                editNumber.setVisibility(View.GONE);
+//                sendButton.setVisibility(View.GONE);
+//                description.setText("전송 요청을 보냈습니다.");
+
+                Toast.makeText(getApplicationContext(), "배송 시작", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MyService.class);
                 intent.putExtra("msg", real_address);
                 startService(intent);
