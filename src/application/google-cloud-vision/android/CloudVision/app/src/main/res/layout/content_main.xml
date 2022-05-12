@@ -86,7 +86,8 @@
                 android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
-                android:background="@drawable/button_round"/>
+                android:background="@drawable/button_round"
+                android:visibility="gone"/>
 
         </LinearLayout>
     </ScrollView>

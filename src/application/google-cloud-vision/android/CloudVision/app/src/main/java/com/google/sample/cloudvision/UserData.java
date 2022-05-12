@@ -10,4 +10,10 @@ public class UserData {
     public String getAddress() {
         return address;
     }
+    public void setNumber(String number) {
+        this.number = number;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
