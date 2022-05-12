@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mMainImage;
     private EditText editNumber;
 
+
     static final int SMS_SEND_PERMISSON = 1; // SMS 송신 권한 설정용 변수
     Button sendButton;
     public static String real_address;
@@ -125,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button fab = findViewById(R.id.fab);
+
+        Button dbButton = findViewById(R.id.databaseButton);
+
         description = findViewById(R.id.description);
         mMainImage = findViewById(R.id.main_image);
         editNumber = findViewById(R.id.editNumber);
@@ -139,8 +143,12 @@ public class MainActivity extends AppCompatActivity {
             builder.create().show();
         });
 
+        dbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
+            }
+        });
 
 
         sendButton.setOnClickListener(new View.OnClickListener() {
