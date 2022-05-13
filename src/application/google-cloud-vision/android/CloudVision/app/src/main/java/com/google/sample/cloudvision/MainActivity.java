@@ -70,6 +70,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mMainImage;
     private EditText editNumber;
 
-    private ArrayList<UserData> userList;
+    public ArrayList<UserData> userList;
     private String mJsonString;
 
 
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button fab = findViewById(R.id.fab);
 
+        userList = new ArrayList<UserData>();
         Button dbButton = findViewById(R.id.databaseButton);
 
         description = findViewById(R.id.description);
@@ -203,14 +205,14 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
             progressDialog.dismiss();
-            description.setText(result);
             Log.d(TAG, "response - " + result);
 
             if (result == null){
-
                 description.setText(errorString);
             }
             else {
+                int start = result.indexOf("{");
+                result = result.substring(start);
                 mJsonString = result;
                 showResult();
             }
