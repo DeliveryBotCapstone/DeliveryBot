@@ -16,7 +16,9 @@ import java.net.Socket;
 public class MyService extends Service {
 
     String rmsg;
-    String msg;
+    String address;
+    String name;
+    String number;
     static final int SMS_RECEIVE_PERMISSON=1;
 
     public MyService() {
@@ -33,9 +35,11 @@ public class MyService extends Service {
         if (intent == null) {
             return Service.START_STICKY;
         } else {
-            msg = intent.getStringExtra("msg");
+            address = intent.getStringExtra("address");
+            name = intent.getStringExtra("name");
+            number = intent.getStringExtra("number");
 
-            MyService.TCPclient tcpThread = new MyService.TCPclient(msg);
+            MyService.TCPclient tcpThread = new MyService.TCPclient(address);
             Thread thread = new Thread(tcpThread);
             thread.start();
         }
@@ -59,7 +63,7 @@ public class MyService extends Service {
         private static final int serverPort = 1111;
         private Socket inetSocket = null;
         private String msg;
-        private String phoneNum = "xxx-xxxx-xxxx";
+        private String phoneNum = number;
 
         public TCPclient(String msg) {
             this.msg = msg;
@@ -78,8 +82,9 @@ public class MyService extends Service {
                     rmsg = in.readLine();
                     Log.d("TCP", "C: Server send to me this message --> " + rmsg);
 
+                    String m = name + "님에게 배송이 완료되었습니다.";
                     SmsManager sms = SmsManager.getDefault();
-                    sms.sendTextMessage(phoneNum, null, rmsg, null, null);
+                    sms.sendTextMessage(phoneNum, null, m, null, null);
 
                 } catch (Exception e) {
                     Log.e("TCP", "C: Error1", e);
