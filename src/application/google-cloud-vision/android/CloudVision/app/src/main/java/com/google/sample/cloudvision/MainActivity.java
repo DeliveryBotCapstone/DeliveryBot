@@ -155,6 +155,19 @@ public class MainActivity extends AppCompatActivity {
         GetData task = new GetData();
         task.execute("http://13.209.74.128/getjson.php", "");
 
+        UserData u1 = new UserData();
+        u1.setName("박종건");
+        u1.setNumber("01071672699");
+        u1.setAddress("A1406");
+
+        UserData u2 = new UserData();
+        u2.setName("홍길동");
+        u2.setNumber("010-1111-1111");
+        u2.setAddress("A1404");
+
+        userList.add(u1);
+        userList.add(u2);
+
         fab.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder
@@ -174,9 +187,22 @@ public class MainActivity extends AppCompatActivity {
 //                sendButton.setVisibility(View.GONE);
 //                description.setText("전송 요청을 보냈습니다.");
 
+                real_address = editNumber.getText().toString();
+
+                String name = "";
+                String phoneNum = "";
+                for(int i = 0; i < userList.size(); i++) {
+                    if(userList.get(i).getAddress().equals(real_address)) {
+                        name = userList.get(i).getName();
+                        phoneNum = userList.get(i).getNumber();
+                    }
+                }
+
                 Toast.makeText(getApplicationContext(), "배송 시작", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MyService.class);
-                intent.putExtra("msg", real_address);
+                intent.putExtra("address", real_address);
+                intent.putExtra("name", name);
+                intent.putExtra("number", phoneNum);
                 startService(intent);
             }
         });
@@ -283,7 +309,8 @@ public class MainActivity extends AppCompatActivity {
 
         String TAG_JSON="webnautes";
         String TAG_NUMBER = "number";
-        String TAG_ADDRESS ="address";
+        String TAG_ADDRESS = "address";
+        String TAG_NAME = "name";
 
 
         try {
@@ -296,11 +323,13 @@ public class MainActivity extends AppCompatActivity {
 
                 String number = item.getString(TAG_NUMBER);
                 String address = item.getString(TAG_ADDRESS);
+                String name = item.getString(TAG_NAME);
 
                 UserData userData = new UserData();
 
                 userData.setNumber(number);
                 userData.setAddress(address);
+                userData.setName(name);
 
                 userList.add(userData);
             }
