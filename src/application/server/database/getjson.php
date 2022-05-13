@@ -5,7 +5,7 @@
 
     include('dbcon.php');
         
-    $stmt = $con->prepare('select * from person');
+    $stmt = $con->prepare('select * from TEST1');
     $stmt->execute();
 
     if ($stmt->rowCount() > 0)
@@ -18,7 +18,8 @@
     
             array_push($data, 
                 array('address'=>$address,
-                'number'=>$number
+                'number'=>$number,
+                'name'=>$name
             ));
         }
 

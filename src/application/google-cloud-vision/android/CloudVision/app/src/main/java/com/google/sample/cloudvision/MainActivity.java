@@ -140,15 +140,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
         Button fab = findViewById(R.id.fab);
 
         userList = new ArrayList<UserData>();
-        Button dbButton = findViewById(R.id.databaseButton);
 
         description = findViewById(R.id.description);
         mMainImage = findViewById(R.id.main_image);
         editNumber = findViewById(R.id.editNumber);
         sendButton = (Button) findViewById(R.id.sendButton);
+
+
+        //DB 데이터 가져오기
+        GetData task = new GetData();
+        task.execute("http://13.209.74.128/getjson.php", "");
 
         fab.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -157,15 +162,6 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton(R.string.dialog_select_gallery, (dialog, which) -> startGalleryChooser())
                     .setNegativeButton(R.string.dialog_select_camera, (dialog, which) -> startCamera());
             builder.create().show();
-        });
-
-        dbButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //userList.clear();
-                GenData task = new GenData();
-                task.execute("http://13.209.74.128/getjson.php", "");
-            }
         });
 
 
@@ -186,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private class GenData extends AsyncTask<String, Void, String>{
+    private class GetData extends AsyncTask<String, Void, String>{
 
         ProgressDialog progressDialog;
         String errorString = null;

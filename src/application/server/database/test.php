@@ -1,10 +1,6 @@
 <?php  
 
-$con=mysqli_connect("13.209.74.128","ostus","748596","ostus"); 
-mysqli_select_db( $con, "ostus");
-
- 
-
+$con=mysqli_connect("localhost","ostus", "748596", "ostus"); 
 mysqli_set_charset($con,"utf8");
 
   
@@ -17,15 +13,17 @@ if (mysqli_connect_errno($con))
 
 }  
 
-$name = $_POST['name'];  
+$number = $_POST['number'];  
 
 $address = $_POST['address'];  
 
-  
+$name = $_POST['name'];
 
   
 
-$result = mysqli_query($con,"insert into TEST1 (name,address) values ('$name','$address')");  
+  
+
+$result = mysqli_query($con,"insert into TEST1 (number,address,name) values ('$number','$address','$name')");  
 
   
 
@@ -59,9 +57,11 @@ mysqli_close($con);
 
       <form action = "<?php $_PHP_SELF ?>" method = "POST">
 
-         Name: <input type = "text" name = "name" />
+         Name : <input type="text" name="name">
 
-         Address: <input type = "text" name = "address" />
+         Number : <input type = "text" name = "number" />
+
+         Address : <input type = "text" name = "address" />
 
          <input type = "submit" />
 
