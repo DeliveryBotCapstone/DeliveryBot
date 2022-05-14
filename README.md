@@ -16,7 +16,7 @@
 * 지도교수 : 김태운 교수님
 ## 기술 스택
 
-### TurtleBot3
+### Delivery Bot
 <img alt="ROS" src ="https://img.shields.io/badge/ROS-22314E.svg?&style=for-the-badge&logo=ROS&logoColor=white"/> <img alt="Raspberry Pi" src ="https://img.shields.io/badge/Raspberry Pi-A22846.svg?&style=for-the-badge&logo=Raspberry Pi&logoColor=white"/> <img alt="Google" src ="https://img.shields.io/badge/Google Cartographer-4285F4.svg?&style=for-the-badge&logo=Google&logoColor=white"/>
 
 
