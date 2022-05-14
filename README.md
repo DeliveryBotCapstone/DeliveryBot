@@ -25,7 +25,7 @@
 ### 어플리케이션
 <img alt="AmazonAWS" src ="https://img.shields.io/badge/Amazon EC2-232F3E.svg?&style=for-the-badge&logo=AmazonAWS&logoColor=white"/> <img alt="Android Studio" src ="https://img.shields.io/badge/Android Studio-3DDC84.svg?&style=for-the-badge&logo=Android Studio&logoColor=white"/> <img alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white"/>
 
-## '택배 봇'에 사용된 TurtleBot3 설명
+## '택배 봇' 로봇 설명
 * 내용 추가 예정
 
 ## '택배 봇' 어플리케이션 설명
