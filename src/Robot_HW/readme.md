@@ -53,18 +53,46 @@
 
 * [Raspberry Pi Imager 다운로드](https://www.raspberrypi.com/software/) <br>
 
-* micro SD 카드에 이미지 Write 이후 RPI에 장착/부팅
+* microSD 카드에 이미지 Write 이후 RPI에 장착/부팅<br>
 <img src="./Image/RPI_imager.jpg" width="500">
 
-* RPI에 모니터 연결
+* RPI에 모니터 연결  **( ID :ubuntu, password: turtlebot )**
 
 
 *   ```bash
     $ cd /etc/netplan
     $ sudo vim 50-cloud-init.yaml
     ```
-* 아래 예시와 같이 작성 **("my-SSID" : 연결할 WIFI이름(SSID), "my-password" : 연결할 WIFI 의 비밀번호)** <br>
+* 아래 예시와 같이 작성 **( "my-SSID" : 연결할 WIFI이름(SSID), "my-password" : 연결할 WIFI 의 비밀번호 )** <br>
 <img src="./Image/staticip.jpg" width="300">
 
 * `sudo netplan apply` 또는 `sudo reboot now`
 
+*   ```bash
+    $ ifconfig # ip확인
+    $ vim ~/.bashrc
+    ```
+* 아래 그림과 같이 작성 **( {Remote_PC_IP}: 로봇 서버 ip, {LOCAL_PC_IP}: RPI ip )** <br>
+<img src="./Image/RPI_bash.jpg" width="500">
+
+## OpenCR 설정
+
+RPI 에서 실행 
+
+```bash
+$ sudo dpkg --add-architecture armhf
+$ sudo apt-get update
+$ sudo apt-get install libc6:armhf
+
+$ export OPENCR_PORT=/dev/ttyACM0
+$ export OPENCR_MODEL=burger_noetic
+$ rm -rf ./opencr_update.tar.bz2
+
+$ wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS1/latest/opencr_update.tar.bz2 
+$ tar -xvf opencr_update.tar.bz2 
+
+$ cd ./opencr_update
+$ ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
+```
+아래 처럼 나오면 성공<br>
+<img src="./Image/opencr_cli.jpg" width="500">
