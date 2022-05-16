@@ -47,3 +47,4 @@
 
 [모터 드라이버 2A L298N (Store)](https://eduino.kr/product/detail.html?product_no=194&cate_no=55&display_group=1)
 
+## Raspberry Pi 용 ROS 이미지 부팅 및 기본 설정
