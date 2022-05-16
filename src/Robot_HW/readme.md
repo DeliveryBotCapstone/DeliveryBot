@@ -77,7 +77,7 @@
 
 ## OpenCR 설정
 
-RPI 에서 실행 
+RPI 에서 실행.
 
 ```bash
 $ sudo dpkg --add-architecture armhf
@@ -94,5 +94,5 @@ $ tar -xvf opencr_update.tar.bz2
 $ cd ./opencr_update
 $ ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
 ```
-아래 처럼 나오면 성공<br>
+아래 처럼 나오면 성공.<br>
 <img src="./Image/opencr_cli.jpg" width="500">
