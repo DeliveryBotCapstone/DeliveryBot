@@ -63,3 +63,8 @@
     $ cd /etc/netplan
     $ sudo vim 50-cloud-init.yaml
     ```
+* 아래 예시와 같이 작성 **("my-SSID" : 연결할 WIFI이름(SSID), "my-password" : 연결할 WIFI 의 비밀번호)** <br>
+<img src="./Image/staticip.jpg" width="300">
+
+* `sudo netplan apply` 또는 `sudo reboot now`
+
