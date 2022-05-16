@@ -48,3 +48,18 @@
 [모터 드라이버 2A L298N (Store)](https://eduino.kr/product/detail.html?product_no=194&cate_no=55&display_group=1)
 
 ## Raspberry Pi 용 ROS 이미지 부팅 및 기본 설정
+
+* [Raspberry Pi 4 ROS Noetic 이미지 다운로드](https://www.robotis.com/service/download.php?no=2066)
+
+* [Raspberry Pi Imager 다운로드](https://www.raspberrypi.com/software/) <br>
+
+* micro SD 카드에 이미지 Write 이후 RPI에 장착/부팅
+<img src="./Image/RPI imager.jpg" width="500">
+
+* RPI에 모니터 연결
+
+
+*   ```bash
+    $ cd /etc/netplan
+    $ sudo vim 50-cloud-init.yaml
+    ```
