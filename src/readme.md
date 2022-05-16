@@ -15,4 +15,4 @@
 <b>바로가기</b>
 
 [TurtleBot](/src) <br />
-[Android Application](/src/application)
+[Android Application](https://https://github.com/DeliveryBotCapstone/DeliveryBot/tree/app_dev_branch/src)
