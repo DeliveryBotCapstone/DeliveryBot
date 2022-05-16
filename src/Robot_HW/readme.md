@@ -54,7 +54,7 @@
 * [Raspberry Pi Imager 다운로드](https://www.raspberrypi.com/software/) <br>
 
 * micro SD 카드에 이미지 Write 이후 RPI에 장착/부팅
-<img src="./Image/RPI imager.jpg" width="500">
+<img src="./Image/RPI_imager.jpg" width="500">
 
 * RPI에 모니터 연결
 
