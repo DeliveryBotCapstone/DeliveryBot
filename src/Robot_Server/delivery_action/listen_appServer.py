@@ -71,7 +71,7 @@ def goToPosition (position_index):
     return ret
 
 # 로봇 캐리어(컨배이어 벨트,모터)를 동작 시키기위한 함수 (로봇 서버 <--> 로봇)
-def box_motor_activate():
+def boxMotorActivate():
     IP = '192.168.0.188'
     PORT = 9998
     SIZE = 1024
@@ -112,7 +112,7 @@ if __name__ == "__main__":
             # 배달 성공/실패
             if ret == True:
                 # 성공시 캐리어 동작 함수 호출
-                box_motor_activate()
+                boxMotorActivate()
                 app_server_socket.send("success\n".encode())
             else:
                 app_server_socket.send("fail\n".encode())
