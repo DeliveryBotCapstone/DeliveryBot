@@ -95,4 +95,5 @@ $ cd ./opencr_update
 $ ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
 ```
 아래 처럼 나오면 성공<br>
+
 <img src="./Image/opencr_cli.jpg" width="500">
