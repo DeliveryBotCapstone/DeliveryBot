@@ -7,12 +7,12 @@
 ```ruby   
 
  DeleveryBot
- │── TurtleBot
+ │── Robot
  └── Application
  ```  
  
  <br />
 <b>바로가기</b>
 
-[TurtleBot](/src) <br />
+[Robot](/src) <br />
 [Android Application](/src/application)
