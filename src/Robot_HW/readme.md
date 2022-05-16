@@ -1,6 +1,6 @@
 # Robot Hardware Assembly 
 ## 로봇 하드웨어 구성
----
+
 ## 로봇 사진
 <details>
 <summary>전면</summary>
@@ -20,8 +20,6 @@
 <img src="./Image/robot_rightside.jpg" width="300">
 <img src="./Image/robot_leftside.jpg" width="300">
 </details>
-
----
 
 ## 주요 구성품
 
