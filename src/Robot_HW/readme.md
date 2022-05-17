@@ -97,3 +97,44 @@ $ ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
 아래 처럼 나오면 성공<br>
 
 <img src="./Image/opencrcli.jpg" width="500">
+
+## YDLIDAR X4 드라이버 설치 및 셋팅
+
+**방법 1**<br>
+
+YDLIDAR 는 YDLIDAR/YDLidar-SDK에 의존성을 가지기 때문에 설치합니다.
+```bash
+$ sudo apt install cmake pkg-config
+$ git clone https://github.com/YDLIDAR/YDLidar-SDK.git
+$ cd YDLidar-SDK/build
+$ cmake ..
+$ make
+$ sudo make install
+```
+
+YDLidar driver 설치
+```bash
+$ git clone https://github.com/YDLIDAR/ydlidar_ros_driver.git ydlidar_ws/src/ydlidar_ros_driver
+$ cd ydlidar_ws
+$ catkin_make
+
+$ source ./devel/setup.sh
+$ echo "source ~/ydlidar_ws/devel/setup.bash" >> ~/.bashrc
+$ source ~/.bashrc
+
+$ chmod 0777 src/ydlidar_ros_driver/startup/*
+$ sudo sh src/ydlidar_ros_driver/startup/initenv.sh
+
+$ cd ./src
+$ git clone https://github.com/YDLIDAR/ydlidar_ros
+$ git chectout master
+$ cd ..
+$ catkin_make
+
+$ touch /dev/ydlidar
+$ sudo chmode 777 /dev/ydlidar
+
+$ roscd ydlidar_ros/startup
+$ sudo chmod 777 ./*
+$ sudo sh initenv.sh
+```
