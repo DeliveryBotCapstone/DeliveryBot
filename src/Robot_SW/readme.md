@@ -9,7 +9,7 @@ $ ssh ubuntu@{IP_ADDRESS_OF_RASPBERRY_PI} # 로봇 서버에서 원격으로 실
 
 $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
-아래 예시와 같이 나오면 성공
+아래 예시와 같이 나오면 성공<br>
 <img src="./Image/bringup.jpg">
 
 라이더 사용과 메세지를 받기위해서 실행
@@ -18,7 +18,7 @@ $ roslaunch ydlidar_ros X4.launch
 or
 $ roslaunch ydlidar_ros_driver X4.launch
 ```
-아래 예시와 같이 나오면 성공
+아래 예시와 같이 나오면 성공<br>
 <img src="./Image/ydlidar.jpg">
 
 ## 캐리어 동작 서버 실행 명령어
