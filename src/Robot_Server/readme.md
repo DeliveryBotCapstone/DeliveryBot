@@ -79,7 +79,7 @@ $ rosrun map_server map_saver -f ~/{map_file_name}
 생성한 map<br>
 <img src = './Image/map.jpg' width = '500'>
 
-## Navigation (action)
+## Navigation (delivery_action)
 > **Navigation 이란?**<br>
 > 작성한 map 위에서 지정한 좌표(위치)로 이동하는 것을 Navigation 이라고 한다.
 > map, 로봇 인코더, IMU 센서 및 거리 센서를 사용하여 로봇이 사용자가 지정한 위치로 이동한다.
@@ -87,10 +87,14 @@ $ rosrun map_server map_saver -f ~/{map_file_name}
 Navigation 아래 예시처럼 진행 된다.<br>
 <img src = './Image/2d_nav_goal.jpg'>
 
+### _Navigation 사용 방법_
 ```bash
 # navigation 노드 실행
 $ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/{map_file_name}.yaml
 
-# 
+# 앱으로 부터 메세지를 받으면 지정한 위치로 이동하는 기능을 포함한 서버 실행
 $ python3 listen_appServer.py
 ```
+
+Navigation 동작 이미지
+<img src = './Image/navigation.jpg'>
