@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,6 +20,7 @@ public class MyService extends Service {
     String address;
     String name;
     String number;
+    String IP;
     static final int SMS_RECEIVE_PERMISSON=1;
 
     public MyService() {
@@ -38,6 +40,7 @@ public class MyService extends Service {
             address = intent.getStringExtra("address");
             name = intent.getStringExtra("name");
             number = intent.getStringExtra("number");
+            IP = intent.getStringExtra("IP");
 
             MyService.TCPclient tcpThread = new MyService.TCPclient(address);
             Thread thread = new Thread(tcpThread);
@@ -59,7 +62,7 @@ public class MyService extends Service {
     }
 
     private class TCPclient implements Runnable {
-        private static final String serverIP = "*.*.*.*";
+        private final String serverIP = IP;
         private static final int serverPort = 1111;
         private Socket inetSocket = null;
         private String msg;

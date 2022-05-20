@@ -36,6 +36,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -99,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<UserData> userList;
     private String mJsonString;
 
+    ///
+    private EditText editIP;
+    private String IP;
+    ///
 
     static final int SMS_SEND_PERMISSON = 1; // SMS 송신 권한 설정용 변수
     Button sendButton;
@@ -107,8 +112,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, 1, 0, "환경설정");
+        menu.add(0, 1, 0, "IP입력");
+        menu.add(0, 2, 0, "IP설정");
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+                editIP.setVisibility(View.VISIBLE);
+                return true;
+            case 2:
+                IP = editIP.getText().toString();
+                editIP.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), "IP 설정 완료", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -151,6 +172,10 @@ public class MainActivity extends AppCompatActivity {
         sendButton = (Button) findViewById(R.id.sendButton);
 
 
+        editIP = findViewById(R.id.editIP);
+        IP = "";
+
+
         //DB 데이터 가져오기
         GetData task = new GetData();
         task.execute("http://13.209.74.128/getjson.php", "");
@@ -167,6 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
         userList.add(u1);
         userList.add(u2);
+        userList.add(u3);
+        userList.add(u4);
+        userList.add(u5);
 
         fab.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -203,6 +231,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("address", real_address);
                 intent.putExtra("name", name);
                 intent.putExtra("number", phoneNum);
+
+                intent.putExtra("IP", IP);
+
                 startService(intent);
             }
         });
