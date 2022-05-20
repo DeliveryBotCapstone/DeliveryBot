@@ -3,49 +3,20 @@ package com.google.sample.cloudvision;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import com.google.api.services.vision.v1.model.AnnotateImageRequest;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.vision.v1.Vision;
-import com.google.api.services.vision.v1.VisionRequest;
-import com.google.api.services.vision.v1.VisionRequestInitializer;
-import com.google.api.services.vision.v1.model.AnnotateImageRequest;
-import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
-import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
-import com.google.api.services.vision.v1.model.EntityAnnotation;
-import com.google.api.services.vision.v1.model.Feature;
-import com.google.api.services.vision.v1.model.Image;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -54,15 +25,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class checking_photo extends AppCompatActivity {
     private static final String TAG = checking_photo.class.getSimpleName();
+    ImageView imageView;
     Button fab;
+    Bitmap photo;
     private static final int GALLERY_PERMISSIONS_REQUEST = 0;
     private static final int GALLERY_IMAGE_REQUEST = 1;
     public static final int CAMERA_PERMISSIONS_REQUEST = 2;
@@ -70,18 +42,11 @@ public class checking_photo extends AppCompatActivity {
     public static final String FILE_NAME = "temp.jpg";
     private static final int MAX_LABEL_RESULTS = 10;
     private static final int MAX_DIMENSION = 1200;
-    static final int SMS_SEND_PERMISSON = 1; // SMS 송신 권한 설정용 변수
-    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-    private ImageView imageView;
 
     protected void onCreate(Bundle savedInstanceStare) {
         super.onCreate(savedInstanceStare);
         setContentView(R.layout.main_page);
         Button fab = findViewById(R.id.fab);
-        imageView = findViewById(R.id.imageView10);
-
-
-        //버튼 눌릴시, 사진 선택 화면이 보이게 함.
         fab.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(checking_photo.this);
             builder
@@ -89,28 +54,26 @@ public class checking_photo extends AppCompatActivity {
                     .setPositiveButton(R.string.dialog_select_gallery, (dialog, which) -> startGalleryChooser())
                     .setNegativeButton(R.string.dialog_select_camera, (dialog, which) -> startCamera());
             builder.create().show();
-
-            //
-            // ㅇㅋㅇㅋ
-            // 사진찍어 놓고 뭐든 다 하고 . 넘긴다.
-            //인텐트로 액티비티에 넘기기.
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            // Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-            BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-            Bitmap bitmap = drawable.getBitmap();
-            float scale =(float) (1024/(float)bitmap.getWidth());
-            int image_w =(int) (bitmap.getWidth()*scale);
-            int image_h = (int) (bitmap.getHeight()*scale);
-            Bitmap resize = Bitmap.createScaledBitmap(bitmap,image_w,image_h,true);
-            resize.compress(Bitmap.CompressFormat.JPEG,90,stream);
-            byte[] byteArray = stream.toByteArray();
-            Intent intent = new Intent(checking_photo.this,MainActivity.class);
-            intent.putExtra("image",byteArray);
-            // 여기서 사진처리를 한다.
-            // 그리고 넘긴다.
-            startActivity(intent);
         });
     }
+
+
+
+    public void sendImage(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        float scale = (float) (1024/(float)bitmap.getWidth());
+        int image_w = (int) (bitmap.getWidth() * scale);
+        int image_h = (int) (bitmap.getHeight() * scale);
+        Bitmap resize = Bitmap.createScaledBitmap(bitmap, image_w, image_h, true);
+        resize.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra(FILE_NAME,byteArray);
+        startActivity(intent);
+    }
+
+
     //갤러리에서 선택하기
     public void startGalleryChooser() {
         if (PermissionUtils.requestPermission(this, GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -147,10 +110,14 @@ public class checking_photo extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == GALLERY_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            uploadImage(data.getData());
+            photo = uploadImage(data.getData());
+            sendImage(photo);
+
+
         } else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
             Uri photoUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", getCameraFile());
-            uploadImage(photoUri);
+            photo = uploadImage(photoUri);
+            sendImage(photo);
         }
     }
 
@@ -171,10 +138,7 @@ public class checking_photo extends AppCompatActivity {
         }
     }
 
-    // Bitmap bitmap =
-    //upload images.
-
-    public void uploadImage(Uri uri) {
+    public Bitmap uploadImage(Uri uri) {
         if (uri != null) {
             try {
                 // scale the image to save on bandwidth
@@ -182,10 +146,7 @@ public class checking_photo extends AppCompatActivity {
                         scaleBitmapDown(
                                 MediaStore.Images.Media.getBitmap(getContentResolver(), uri),
                                 MAX_DIMENSION);
-                imageView.setImageBitmap(bitmap);
-
-
-
+               photo = bitmap;
 
             } catch (IOException e) {
                 Log.d(TAG, "Image picking failed because " + e.getMessage());
@@ -195,7 +156,9 @@ public class checking_photo extends AppCompatActivity {
             Log.d(TAG, "Image picker gave us a null image.");
             Toast.makeText(this, R.string.image_picker_error, Toast.LENGTH_LONG).show();
         }
+        return photo;
     }
+
 
 
 
@@ -219,35 +182,100 @@ public class checking_photo extends AppCompatActivity {
         return Bitmap.createScaledBitmap(bitmap, resizedWidth, resizedHeight, false);
     }
 
-    /*
-    BatchAnnotateImagesRequest batchAnnotateImagesRequest =
-            new BatchAnnotateImagesRequest();
-        batchAnnotateImagesRequest.setRequests(new ArrayList<AnnotateImageRequest>() {{
-        AnnotateImageRequest annotateImageRequest = new AnnotateImageRequest();
+    private class GetData extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+        String errorString = null;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
-        // Add the image
-        Image base64EncodedImage = new Image();
-        // Convert the bitmap to a JPEG
-        // Just in case it's a format that Android understands but Cloud Vision
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            progressDialog = ProgressDialog.show(checking_photo.this,
+                    "Please Wait", null, true, true);
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
 
-        // Base64 encode the JPEG
-        base64EncodedImage.encodeContent(imageBytes);
-        annotateImageRequest.setImage(base64EncodedImage);
+            progressDialog.dismiss();
+            Log.d(TAG, "response - " + result);
+/*
+            if (result == null) {
+                description.setText(errorString);
+            } else {
+                int start = result.indexOf("{");
+                result = result.substring(start);
+                mJsonString = result;
+                showResult();
+            }
 
-        // add the features we want
-        annotateImageRequest.setFeatures(new ArrayList<Feature>() {{
-            Feature textDetection = new Feature();
-            textDetection.setType("TEXT_DETECTION");
-            textDetection.setMaxResults(10);
-            add(textDetection);
-        }});
+ */
+        }
+        @Override
+        protected String doInBackground(String... params) {
 
-        // Add the list of one thing to the request
-        add(annotateImageRequest);
-    }});
-*/
+            String serverURL = params[0];
+            String postParameters = "country=" + params[1];
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                } else {
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+                errorString = e.toString();
+
+                return null;
+            }
+
+        }
+    }
+
 }
+
+
+
+
 

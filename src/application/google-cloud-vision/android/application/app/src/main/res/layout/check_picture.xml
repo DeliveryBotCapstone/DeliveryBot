@@ -55,7 +55,7 @@
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/show_picture"
-        app:layout_constraintVertical_bias="0.843"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/retry_text"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -105,25 +105,13 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="179dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="174dp"
+        android:layout_width="148dp"
+        android:layout_height="23dp"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/editNum"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/show_picture" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="39dp"
-        android:layout_height="6dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="209dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/show_picture"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/show_picture"
+        app:layout_constraintVertical_bias="0.775" />
 
 </android.support.constraint.ConstraintLayout>

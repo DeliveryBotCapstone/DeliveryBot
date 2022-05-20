@@ -22,18 +22,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -42,7 +35,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpTransport;
@@ -57,15 +49,11 @@ import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.api.services.vision.v1.model.Image;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -75,33 +63,29 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private static final String CLOUD_VISION_API_KEY = BuildConfig.API_KEY;
-    public static final String FILE_NAME = "temp.jpg";
+//    public static final String FILE_NAME = "temp.jpg";
     private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
     private static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";
+    public static final String FILE_NAME = "temp.jpg";
     private static final int MAX_LABEL_RESULTS = 10;
     private static final int MAX_DIMENSION = 1200;
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int GALLERY_PERMISSIONS_REQUEST = 0;
-    private static final int GALLERY_IMAGE_REQUEST = 1;
-    public static final int CAMERA_PERMISSIONS_REQUEST = 2;
-    public static final int CAMERA_IMAGE_REQUEST = 3;
-    //전역변수
-    public TextView test;
 
+    //전역변수
     private TextView description;
-    private TextView testvieWW;
     private ImageView mMainImage;
     private EditText editNumber;
 
     public ArrayList<UserData> userList;
     private String mJsonString;
-
-
+    Bitmap photoBitmap;
     static final int SMS_SEND_PERMISSON = 1; // SMS 송신 권한 설정용 변수
     Button sendButton;
+    Button retryButton;
     public static String real_address;
 
     @Override
@@ -115,55 +99,54 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mMainImage = findViewById(R.id.show_picture);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle("");
-       // setSupportActionBar(toolbar);
+        //각종 컴포넌트.
+
+        userList = new ArrayList<UserData>();
+        editNumber = findViewById(R.id.editNum);
+        sendButton = (Button) findViewById(R.id.sendbutton);
+        retryButton = (Button) findViewById(R.id.button3);
+        description = findViewById(R.id.textView);
+
 
         // SMS 송신 권한 설정
         int permissonCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
 
-        if(permissonCheck == PackageManager.PERMISSION_GRANTED){
+        if (permissonCheck == PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(getApplicationContext(), "SMS 송신 권한 있음", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Toast.makeText(getApplicationContext(), "SMS 송신 권한 없음", Toast.LENGTH_SHORT).show();
             // 권한설정 dialog에서 거부를 누르면
             // ActivityCompat.shouldShowRequestPermissionRationale 메소드의 반환값이 true가 된다.
             // 단, 사용자가 "Don't ask again"을 체크한 경우
             // 거부하더라도 false를 반환하여, 직접 사용자가 권한을 부여하지 않는 이상, 권한을 요청할 수 없게 된다.
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {
                 // 이곳에 권한이 왜 필요한지 설명하는 Toast나 dialog를 띄워준 후, 다시 권한을 요청한다.
                 Toast.makeText(getApplicationContext(), "SMS권한이 필요합니다", Toast.LENGTH_SHORT).show();
-                ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.SEND_SMS}, SMS_SEND_PERMISSON);
-            }else{
-                ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.SEND_SMS}, SMS_SEND_PERMISSON);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, SMS_SEND_PERMISSON);
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, SMS_SEND_PERMISSON);
             }
         }
 
+        //사진 이미지로 불러냄.
+        byte[] byteArray = getIntent().getByteArrayExtra(FILE_NAME);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        photoBitmap = bitmap;
+        mMainImage.setImageBitmap(photoBitmap);
 
-        //각종 컴포넌트.
-        Button fab = findViewById(R.id.fab);
-
-        userList = new ArrayList<UserData>();
-
-        description = findViewById(R.id.textView);
-        mMainImage = findViewById(R.id.show_picture);
-        editNumber = findViewById(R.id.editNum);
-        sendButton = (Button) findViewById(R.id.sendbutton);
-        testvieWW = findViewById(R.id.textView2);
-
-        //사진 가져옴.
-/*
-        String imagepath = getIntent().getStringExtra("path");
-        testvieWW.setText(imagepath);
-       Glide.with(this).load(imagepath).into(mMainImage);
-*/
-
+        //ocr 기능 사용
+        //callCloudVision(photoBitmap);
 
         //DB 데이터 가져오기
         GetData task = new GetData();
+        task.execute("http://13.209.74.128/getjson.php", "");
 
         UserData u1 = new UserData();
+        u1.setName("박종건");
+        u1.setNumber("01071672699");
+        u1.setAddress("A1406");
 
         UserData u2 = new UserData();
         u2.setName("홍길동");
@@ -185,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
 
                 String name = "";
                 String phoneNum = "";
-                for(int i = 0; i < userList.size(); i++) {
-                    if(userList.get(i).getAddress().equals(real_address)) {
+                for (int i = 0; i < userList.size(); i++) {
+                    if (userList.get(i).getAddress().equals(real_address)) {
                         name = userList.get(i).getName();
                         phoneNum = userList.get(i).getNumber();
                     }
@@ -200,13 +183,22 @@ public class MainActivity extends AppCompatActivity {
                 startService(intent);
             }
         });
+
+        retryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, checking_photo.class);
+                startActivity(intent);
+
+            }
+        });
+
+
     }
 
-    private class GetData extends AsyncTask<String, Void, String>{
-
+    private class GetData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
         String errorString = null;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -214,8 +206,6 @@ public class MainActivity extends AppCompatActivity {
             progressDialog = ProgressDialog.show(MainActivity.this,
                     "Please Wait", null, true, true);
         }
-
-
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -223,18 +213,15 @@ public class MainActivity extends AppCompatActivity {
             progressDialog.dismiss();
             Log.d(TAG, "response - " + result);
 
-            if (result == null){
+            if (result == null) {
                 description.setText(errorString);
-            }
-            else {
+            } else {
                 int start = result.indexOf("{");
                 result = result.substring(start);
                 mJsonString = result;
                 showResult();
             }
         }
-
-
         @Override
         protected String doInBackground(String... params) {
 
@@ -265,10 +252,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "response code - " + responseStatusCode);
 
                 InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
-                }
-                else{
+                } else {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
@@ -279,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
                 String line;
 
-                while((line = bufferedReader.readLine()) != null){
+                while ((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
 
@@ -299,9 +285,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showResult(){
+    private void showResult() {
 
-        String TAG_JSON="webnautes";
+        String TAG_JSON = "webnautes";
         String TAG_NUMBER = "number";
         String TAG_ADDRESS = "address";
         String TAG_NAME = "name";
@@ -311,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            for(int i=0;i<jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
@@ -330,93 +316,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Log.d(TAG, "showResult : ", e);
         }
-
-    }
-    //사진 관련 한 그런함수들.
-  /*  public void startGalleryChooser() {
-        if (PermissionUtils.requestPermission(this, GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select a photo"),
-                    GALLERY_IMAGE_REQUEST);
-        }
     }
 
-    public void startCamera() {
-        if (PermissionUtils.requestPermission(
-                this,
-                CAMERA_PERMISSIONS_REQUEST,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA)) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            Uri photoUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", getCameraFile());
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivityForResult(intent, CAMERA_IMAGE_REQUEST);
-        }
-    }
-
-
-    public File getCameraFile() {
-        File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        return new File(dir, FILE_NAME);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == GALLERY_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            uploadImage(data.getData());
-        } else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            Uri photoUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", getCameraFile());
-            uploadImage(photoUri);
-        }
-    }
-*/
-    /*
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case CAMERA_PERMISSIONS_REQUEST:
-                if (PermissionUtils.permissionGranted(requestCode, CAMERA_PERMISSIONS_REQUEST, grantResults)) {
-                    startCamera();
-                }
-                break;
-            case GALLERY_PERMISSIONS_REQUEST:
-                if (PermissionUtils.permissionGranted(requestCode, GALLERY_PERMISSIONS_REQUEST, grantResults)) {
-                    startGalleryChooser();
-                }
-                break;
-        }
-    }
-*/
-
-  /*  public void uploadImage(Uri uri) {
-            if (uri != null) {
-                try {
-                    // scale the image to save on bandwidth
-                    Bitmap bitmap =
-                            scaleBitmapDown(
-                                    MediaStore.Images.Media.getBitmap(getContentResolver(), uri),
-                                    MAX_DIMENSION);
-
-                    // callCloudVision(bitmap);
-                    //  mMainImage.setImageBitmap(bitmap);
-
-                } catch (IOException e) {
-                    Log.d(TAG, "Image picking failed because " + e.getMessage());
-                    Toast.makeText(this, R.string.image_picker_error, Toast.LENGTH_LONG).show();
-                }
-            } else {
-                Log.d(TAG, "Image picker gave us a null image.");
-                Toast.makeText(this, R.string.image_picker_error, Toast.LENGTH_LONG).show();
-            }
-    }
-*/
     private Vision.Images.Annotate prepareAnnotationRequest(Bitmap bitmap) throws IOException {
         HttpTransport httpTransport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
@@ -427,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
                      * We override this so we can inject important identifying fields into the HTTP
                      * headers. This enables use of a restricted cloud platform API key.
                      */
-                    @Override
+                   @Override
                     protected void initializeVisionRequest(VisionRequest<?> visionRequest)
                             throws IOException {
                         super.initializeVisionRequest(visionRequest);
@@ -483,6 +384,7 @@ public class MainActivity extends AppCompatActivity {
 
         return annotateRequest;
     }
+
 
     private static class LableDetectionTask extends AsyncTask<Object, Void, String> {
         private final WeakReference<MainActivity> mActivityWeakReference;
@@ -540,6 +442,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void callCloudVision(final Bitmap bitmap) {
         // Switch text to loading
         description.setText(R.string.loading_message);
@@ -554,26 +458,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*private Bitmap scaleBitmapDown(Bitmap bitmap, int maxDimension) {
 
-        int originalWidth = bitmap.getWidth();
-        int originalHeight = bitmap.getHeight();
-        int resizedWidth = maxDimension;
-        int resizedHeight = maxDimension;
 
-        if (originalHeight > originalWidth) {
-            resizedHeight = maxDimension;
-            resizedWidth = (int) (resizedHeight * (float) originalWidth / (float) originalHeight);
-        } else if (originalWidth > originalHeight) {
-            resizedWidth = maxDimension;
-            resizedHeight = (int) (resizedWidth * (float) originalHeight / (float) originalWidth);
-        } else if (originalHeight == originalWidth) {
-            resizedHeight = maxDimension;
-            resizedWidth = maxDimension;
-        }
-        return Bitmap.createScaledBitmap(bitmap, resizedWidth, resizedHeight, false);
-    }
-*/
     private static String convertResponseToString(BatchAnnotateImagesResponse response) {
         StringBuilder message = new StringBuilder("I found these things:\n\n");
 
@@ -591,4 +477,5 @@ public class MainActivity extends AppCompatActivity {
         return message.toString();
     }
 }
+
 

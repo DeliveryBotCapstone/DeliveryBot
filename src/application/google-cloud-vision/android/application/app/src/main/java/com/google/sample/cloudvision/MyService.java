@@ -59,6 +59,8 @@ public class MyService extends Service {
     }
 
     private class TCPclient implements Runnable {
+        private static final String serverIP = "*.*.*.*";
+        private static final int serverPort = 1111;
         private Socket inetSocket = null;
         private String msg;
         private String phoneNum = number;
