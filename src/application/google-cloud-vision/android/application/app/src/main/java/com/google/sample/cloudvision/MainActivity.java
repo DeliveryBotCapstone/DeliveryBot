@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     //전역변수
-    private TextView description;
+    //private TextView description;
     private ImageView mMainImage;
     private EditText editNumber;
 
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         editNumber = findViewById(R.id.editNum);
         sendButton = (Button) findViewById(R.id.sendbutton);
         retryButton = (Button) findViewById(R.id.button3);
-        description = findViewById(R.id.textView);
+      //  description = findViewById(R.id.textView);
 
 
         // SMS 송신 권한 설정
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         UserData u1 = new UserData();
         u1.setName("박종건");
-        u1.setNumber("01071672699");
+        u1.setNumber("01083705896");
         u1.setAddress("A1406");
 
         UserData u2 = new UserData();
@@ -181,6 +181,16 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("name", name);
                 intent.putExtra("number", phoneNum);
                 startService(intent);
+                try
+                {
+                    Intent after = new Intent(getApplicationContext(),after_checking.class);
+                    Thread.sleep(1000);
+                    startActivity(after);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -214,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "response - " + result);
 
             if (result == null) {
-                description.setText(errorString);
+                //description.setText(errorString);
             } else {
                 int start = result.indexOf("{");
                 result = result.substring(start);
@@ -433,11 +443,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Button sendButton = activity.findViewById(R.id.sendbutton);
                 EditText editNumber = activity.findViewById(R.id.editNum);
-                TextView description = activity.findViewById(R.id.textView);
                 sendButton.setVisibility(View.VISIBLE);
                 editNumber.setVisibility(View.VISIBLE);
-                description.setText("아래 호수가 맞지 않다면 수정하세요.");
                 editNumber.setText(real_address);
+
+
             }
         }
     }
@@ -446,8 +456,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void callCloudVision(final Bitmap bitmap) {
         // Switch text to loading
-        description.setText(R.string.loading_message);
-
         // Do the real work in an async task, because we need to use the network anyway
         try {
             AsyncTask<Object, Void, String> labelDetectionTask = new LableDetectionTask(this, prepareAnnotationRequest(bitmap));

@@ -10,12 +10,13 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="61dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="44dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="347dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -95,6 +96,7 @@
         android:layout_marginEnd="99dp"
         android:ems="10"
         android:inputType="number"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/imageView11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,16 +104,5 @@
         app:layout_constraintTop_toBottomOf="@+id/show_picture"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="148dp"
-        android:layout_height="23dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/editNum"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/show_picture"
-        app:layout_constraintVertical_bias="0.775" />
 
 </android.support.constraint.ConstraintLayout>
