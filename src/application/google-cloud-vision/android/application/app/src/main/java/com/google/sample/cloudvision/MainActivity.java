@@ -66,12 +66,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CLOUD_VISION_API_KEY = BuildConfig.API_KEY;
-//    public static final String FILE_NAME = "temp.jpg";
-    private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
-    private static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";
     public static final String FILE_NAME = "temp.jpg";
-    private static final int MAX_LABEL_RESULTS = 10;
-    private static final int MAX_DIMENSION = 1200;
+    private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
+    private static final String ANDROID_PACKAGE_HEADER = "X-Android-Package";;
+    //private static final int MAX_LABEL_RESULTS = 10;
+  //  private static final int MAX_DIMENSION = 1200;
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         mMainImage = findViewById(R.id.show_picture);
 
         //각종 컴포넌트.
-
         userList = new ArrayList<UserData>();
         editNumber = findViewById(R.id.editNum);
         sendButton = (Button) findViewById(R.id.sendbutton);
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         mMainImage.setImageBitmap(photoBitmap);
 
         //ocr 기능 사용
-        //callCloudVision(photoBitmap);
+        callCloudVision(photoBitmap);
 
         //DB 데이터 가져오기
         GetData task = new GetData();
@@ -155,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
 
         userList.add(u1);
         userList.add(u2);
+
+
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
