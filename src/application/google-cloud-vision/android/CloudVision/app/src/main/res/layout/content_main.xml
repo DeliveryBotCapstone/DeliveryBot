@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -12,14 +12,29 @@
                 tools:context="com.google.sample.cloudvision.MainActivity"
                 tools:showIn="@layout/activity_main">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+
+            <ImageView
+                android:id="@+id/guide1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sindong"
+                android:layout_marginTop="50dp"></ImageView>
+            <ImageView
+                android:id="@+id/guide2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/phone"></ImageView>
+            <ImageView
+                android:id="@+id/guide3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/guide"></ImageView>
 
             <ImageView
                 android:id="@+id/main_image"
@@ -27,16 +42,17 @@
                 android:layout_height="220dp"
                 android:scaleType="fitCenter"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:visibility="gone"/>
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:textAlignment="center"
-                android:textSize="18dp"
-                android:text="아래 버튼을 클릭하여 사진을 선택하세요." />
+<!--            <TextView-->
+<!--                android:id="@+id/description"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="18dp"-->
+<!--                android:text="아래 버튼을 클릭하여 사진을 선택하세요." />-->
 
             <EditText
                 android:id="@+id/editNumber"
@@ -76,7 +92,8 @@
                 android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
-                android:background="@drawable/button_round"/>
+                android:background="@drawable/button_round"
+                android:layout_marginTop="30dp"/>
 
             <EditText
                 android:id="@+id/editIP"
@@ -88,5 +105,4 @@
                 android:visibility="gone"></EditText>
 
         </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+</LinearLayout>
