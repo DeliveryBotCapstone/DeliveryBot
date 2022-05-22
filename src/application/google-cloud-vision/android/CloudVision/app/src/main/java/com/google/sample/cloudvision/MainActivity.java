@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int CAMERA_PERMISSIONS_REQUEST = 2;
     public static final int CAMERA_IMAGE_REQUEST = 3;
 
+    private static Button fab;
+
     private TextView description;
     private ImageView mMainImage;
     private EditText editNumber;
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<UserData> userList;
     private String mJsonString;
 
+    private ImageView guide1, guide2, guide3;
+    private static ImageView retry;
     ///
     private EditText editIP;
     private String IP;
@@ -162,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
 
         userList = new ArrayList<UserData>();
 
@@ -171,6 +175,11 @@ public class MainActivity extends AppCompatActivity {
         editNumber = findViewById(R.id.editNumber);
         sendButton = (Button) findViewById(R.id.sendButton);
 
+        guide1 = findViewById(R.id.guide1);
+        guide2 = findViewById(R.id.guide2);
+        guide3 = findViewById(R.id.guide3);
+
+        retry = findViewById(R.id.retry);
 
         editIP = findViewById(R.id.editIP);
         IP = "";
@@ -195,6 +204,10 @@ public class MainActivity extends AppCompatActivity {
         userList.add(u3);
         userList.add(u4);
         userList.add(u5);
+        userList.add(u6);
+        userList.add(u7);
+        userList.add(u8);
+        userList.add(u9);
 
         fab.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -433,6 +446,10 @@ public class MainActivity extends AppCompatActivity {
         if (uri != null) {
             try {
                 // scale the image to save on bandwidth
+                guide1.setVisibility(View.GONE);
+                guide2.setVisibility(View.GONE);
+                guide3.setVisibility(View.GONE);
+                mMainImage.setVisibility(View.VISIBLE);
                 Bitmap bitmap =
                         scaleBitmapDown(
                                 MediaStore.Images.Media.getBitmap(getContentResolver(), uri),
@@ -547,6 +564,7 @@ public class MainActivity extends AppCompatActivity {
             MainActivity activity = mActivityWeakReference.get();
             if (activity != null && !activity.isFinishing()) {
 
+
                 int start = result.indexOf("공학관");
                 int end = result.indexOf("호");
 
@@ -566,10 +584,12 @@ public class MainActivity extends AppCompatActivity {
                 Button sendButton = activity.findViewById(R.id.sendButton);
                 EditText editNumber = activity.findViewById(R.id.editNumber);
                 TextView description = activity.findViewById(R.id.description);
+                description.setVisibility(View.GONE);
                 sendButton.setVisibility(View.VISIBLE);
                 editNumber.setVisibility(View.VISIBLE);
-                description.setText("아래 호수가 맞지 않다면 수정하세요.");
                 editNumber.setText(real_address);
+                retry.setVisibility(View.VISIBLE);
+                fab.setText("다시 시도");
             }
         }
     }
@@ -577,6 +597,7 @@ public class MainActivity extends AppCompatActivity {
     private void callCloudVision(final Bitmap bitmap) {
         // Switch text to loading
         description.setText(R.string.loading_message);
+        description.setVisibility(View.VISIBLE);
 
         // Do the real work in an async task, because we need to use the network anyway
         try {

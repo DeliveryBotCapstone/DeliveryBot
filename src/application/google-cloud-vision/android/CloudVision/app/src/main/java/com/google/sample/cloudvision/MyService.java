@@ -89,6 +89,8 @@ public class MyService extends Service {
                     SmsManager sms = SmsManager.getDefault();
                     sms.sendTextMessage(phoneNum, null, m, null, null);
 
+                    Intent intent = new Intent(MyService.this, CompleteActivity.class);
+                    startActivity(intent);
                 } catch (Exception e) {
                     Log.e("TCP", "C: Error1", e);
                 } finally {

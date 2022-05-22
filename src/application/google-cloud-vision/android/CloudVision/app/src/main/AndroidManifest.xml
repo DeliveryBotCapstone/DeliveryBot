@@ -36,6 +36,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <activity
+            android:name=".CompleteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
