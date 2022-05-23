@@ -13,3 +13,7 @@
 [Week_06(04/07)](https://github.com/DeliveryBotCapstone/DeliveryBot/tree/main/docs/weekly_report/week_06)
 
 [Week_09(04/27, 04/28)](https://github.com/DeliveryBotCapstone/DeliveryBot/tree/main/docs/weekly_report/week_09)
+
+[Week_11(04/27, 04/28)](https://github.com/DeliveryBotCapstone/DeliveryBot/tree/main/docs/weekly_report/week_11)
+
+[Week_12(04/27, 04/28)](https://github.com/DeliveryBotCapstone/DeliveryBot/tree/main/docs/weekly_report/week_12)
