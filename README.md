@@ -21,6 +21,14 @@
 
 <img alt="Raspberry Pi" src ="https://img.shields.io/badge/Raspberry Pi-A22846.svg?&style=for-the-badge&logo=Raspberry Pi&logoColor=white"/> <img alt="ROS" src ="https://img.shields.io/badge/ROS-22314E.svg?&style=for-the-badge&logo=ROS&logoColor=white"/> <img alt="Google" src ="https://img.shields.io/badge/Google Cartographer-4285F4.svg?&style=for-the-badge&logo=Google&logoColor=white"/> <img alt="Python" src ="https://img.shields.io/badge/Python-3776AB.svg?&style=for-the-badge&logo=Python&logoColor=white"/>
 
+### 다이어그램
+#### 전체
+![슬라이드6](https://user-images.githubusercontent.com/83500747/170278129-db04b8ef-0b09-4c40-835b-41f315065f0a.PNG)
+#### 로봇
+![슬라이드7](https://user-images.githubusercontent.com/83500747/170278144-a3f9fb3c-a0d7-45c1-b4be-942aa2f31707.PNG)
+#### 어플리케이션
+![슬라이드8](https://user-images.githubusercontent.com/83500747/170278154-0b21d2fa-4079-4939-8f56-f9e6e21549f0.PNG)
+
 
 ### 어플리케이션
 #### FRONT-END
