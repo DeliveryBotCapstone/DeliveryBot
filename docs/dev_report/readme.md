@@ -25,3 +25,4 @@
 
 ## Week_04
 [2022-03-22](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_04/2022-03-22.md) </br>
+[2022-03-24](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_04/2022-03-24.md) </br>
