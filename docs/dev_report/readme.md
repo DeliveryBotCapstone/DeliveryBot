@@ -41,3 +41,7 @@
 
 ## Week_11
 [2022-05-14](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_11/2022-05-14.md) </br>
+
+## Week_12
+[2022-05-19](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_12/2022-05-19.md) </br>
+[2022-05-21](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_12/2022-05-21.md) </br>
