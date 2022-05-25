@@ -30,3 +30,7 @@
 ## Week_05
 [2022-03-27](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_05/2022-03-27.md) </br>
 [2022-04-01](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_05/2022-04-01.md) </br>
+
+## Week_06
+[2022-04-05](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_06/2022-04-05.md) </br>
+[2022-04-07](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_06/2022-04-07.md) </br>
