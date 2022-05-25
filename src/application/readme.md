@@ -36,13 +36,12 @@
 <br />
 
  ## 안드로이드 어플리케이션 WIKI 바로가기
-<hr>
 
 [Android Application](/src/application/google-cloud-vision) <br />
 
  <br />
+ 
  ## 데이터베이스 서버 WIKI 바로가기
-<hr>
 
 [Database Server](/src/application/server) <br />
 
