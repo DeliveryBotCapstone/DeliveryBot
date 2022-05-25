@@ -21,15 +21,6 @@
 
 <img alt="Raspberry Pi" src ="https://img.shields.io/badge/Raspberry Pi-A22846.svg?&style=for-the-badge&logo=Raspberry Pi&logoColor=white"/> <img alt="ROS" src ="https://img.shields.io/badge/ROS-22314E.svg?&style=for-the-badge&logo=ROS&logoColor=white"/> <img alt="Google" src ="https://img.shields.io/badge/Google Cartographer-4285F4.svg?&style=for-the-badge&logo=Google&logoColor=white"/> <img alt="Python" src ="https://img.shields.io/badge/Python-3776AB.svg?&style=for-the-badge&logo=Python&logoColor=white"/>
 
-### 다이어그램
-#### 전체
-![슬라이드6](https://user-images.githubusercontent.com/83500747/170278129-db04b8ef-0b09-4c40-835b-41f315065f0a.PNG)
-#### 로봇
-![슬라이드7](https://user-images.githubusercontent.com/83500747/170278144-a3f9fb3c-a0d7-45c1-b4be-942aa2f31707.PNG)
-#### 어플리케이션
-![슬라이드8](https://user-images.githubusercontent.com/83500747/170278154-0b21d2fa-4079-4939-8f56-f9e6e21549f0.PNG)
-
-
 ### 어플리케이션
 #### FRONT-END
 <img alt="Android Studio" src ="https://img.shields.io/badge/Android Studio-3DDC84.svg?&style=for-the-badge&logo=Android Studio&logoColor=white"/> <img alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white"/> <img alt="FIGMA" src ="https://img.shields.io/badge/FIGMA-F24E1E.svg?&style=for-the-badge&logo=FIGMA&logoColor=white"/>
@@ -37,9 +28,15 @@
 #### BACK-END
 <img alt="Android Studio" src ="https://img.shields.io/badge/Android Studio-3DDC84.svg?&style=for-the-badge&logo=Android Studio&logoColor=white"/> <img alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white"/> <img alt="AmazonAWS" src ="https://img.shields.io/badge/Amazon EC2-232F3E.svg?&style=for-the-badge&logo=AmazonAWS&logoColor=white"/> <img alt="php" src ="https://img.shields.io/badge/php-777BB4.svg?&style=for-the-badge&logo=php&logoColor=white"/> <img alt="NGINX" src ="https://img.shields.io/badge/NGINX-009639.svg?&style=for-the-badge&logo=NGINX&logoColor=white"/> <img alt="MySQL" src ="https://img.shields.io/badge/MySQL-4479A1.svg?&style=for-the-badge&logo=MYSQL&logoColor=white"/>
 
+## 다이어그램
+### 전체
+![슬라이드6](https://user-images.githubusercontent.com/83500747/170278129-db04b8ef-0b09-4c40-835b-41f315065f0a.PNG)
+### 로봇
+![슬라이드7](https://user-images.githubusercontent.com/83500747/170278144-a3f9fb3c-a0d7-45c1-b4be-942aa2f31707.PNG)
+### 어플리케이션
+![슬라이드8](https://user-images.githubusercontent.com/83500747/170278154-0b21d2fa-4079-4939-8f56-f9e6e21549f0.PNG)
 
 ## [Go Wiki](/src)  
-
 
 ## 일정표
 ![스케줄](https://user-images.githubusercontent.com/83500747/159468824-32f77962-a822-4cc5-a522-5abb740f9914.PNG)
