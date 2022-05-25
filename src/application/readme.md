@@ -24,10 +24,8 @@
  
  <br />
  
- ### DESIGN
- 
+ ## 기술 상세
  ### Google-Cloud-Vision
- 
  ### SERVER
  #### DATA BASE
  #### SOCKET
