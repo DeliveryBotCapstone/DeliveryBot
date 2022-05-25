@@ -33,3 +33,13 @@
  #### DATA BASE
  #### SOCKET
 
+<br />
+<b>안드로이드 어플리케이션 WIKI 바로가기</b>
+
+[Android Application](/src/application/android) <br />
+
+ <br />
+ <b>데이터베이스 서버 WIKI 바로가기</b>
+
+[Database Server](/src/application/server) <br />
+
