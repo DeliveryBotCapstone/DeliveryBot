@@ -20,13 +20,7 @@
   ▲ 실제 DB 레코드 삽입 페이지 <br /><br />
   ![DB](https://user-images.githubusercontent.com/70936623/170523189-3d13a036-3fc5-4627-b209-a407cca4b81e.PNG)<br />
   ▲ 실제 DB 화면 <br /><br />
-  
-  ## SOCKET
-  ### TOOL<br />
-  ![images](https://user-images.githubusercontent.com/70936623/170528091-7e66389a-8bf2-4a6f-ae90-114e2200c78f.png)<br />
-  * 애플리케이션과 로봇 서버간 통신을 위한 소켓프로그래밍.
-  * 애플리케이션이 수취인에게 SMS를 보내기 위한 수취인 정보 제공함.
-  
+
 
   
 
