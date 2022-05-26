@@ -28,8 +28,19 @@
  <br />
  
  ## 기술 상세
- ### Google-Cloud-Vision
- ### SERVER
+ 
+ ### FRONT-END
+ #### DESIGN
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ### BACK-END
+ #### Google-Cloud-Vision
+ #### SERVER
  #### DATA BASE
  #### SOCKET
 
