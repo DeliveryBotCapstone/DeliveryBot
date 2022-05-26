@@ -35,6 +35,13 @@
  
  ![KakaoTalk_20220412_005820577](https://user-images.githubusercontent.com/70936623/170510971-6daa90dd-ef9d-4ceb-85bf-47fa2cd522c4.png)
  ### SOCKET PROGRAMING
- 
+ * 자바에서 제공하는 라이브러리를 이용한 소켓프로그래밍
+ * TCP 통신 대기중인 로봇 서버와 통신
+ * 로봇 서버를 통해 성공메시지 전송받음 -> 사용자 정보를 토대로 배송 완료 메시지 전달
  ### SMS Manager
+ * 안드로이드에서 제공하는 라이브러리
+ * SMS 를 전송하는 주체
+ * 로봇 서버에서 성공메시지를 받은 직후 데이터베이스에 있는 전화번호로 SMS 전송
+ 
+ ### BACKGROUND 재생
  
