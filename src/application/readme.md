@@ -25,8 +25,17 @@
 
  application
  │── server # 데이터베이스 서버
- │   └─ database
+ │   └── database
+ |       │── dbcon.php # DB 연동 정보 저장
+ |       │── getjson.php # DB의 USER 테이블의 모든 데이터를 출력 
+ |       └── insert.php # DB에 USER 테이블에 레코드 삽입
+ |
  └── google-cloud-vision/android # 어플리케이션 구현
+     │── MainActivity # 사진 촬영, OCR API, DB 연동
+     │── IntroActivity # 어플리케이션 실행 시 초기 로딩 화면
+     │── CompleteActivity # 배송 완료 시 
+     │── MyService # 로봇 서버와의 소켓 통신 및 SMS 전송
+     └── UserData # DB 데이터를 객체화 시키기 위한 클래스
  ```  
 
 <br /><br />
