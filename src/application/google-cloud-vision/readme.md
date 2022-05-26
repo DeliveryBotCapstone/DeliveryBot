@@ -32,7 +32,6 @@
  애플리케이션의 중요 기능인 송장 인식 기술로써 GOOGLE CLOUD VISION API - OCR을 사용.<br />
  택배 이미지 내, 모든 텍스트를 JSON포맷으로 추출, 호수 부분만 추출하여 애플리케이션 화면에 출력, 로봇 서버에게 위치 전송을 담당. 
 
-코드 예시
  ```java
  private void callCloudVision(final Bitmap bitmap) {
         // Switch text to loading
@@ -93,7 +92,6 @@
  * SMS 를 전송하는 주체
  * 로봇 서버에서 성공메시지를 받은 직후 데이터베이스에 있는 전화번호로 SMS 전송
  
- 코드 예시
  ``` java
  import android.telephony.SmsManager;
  SmsManager sms = SmsManager.getDefault();
