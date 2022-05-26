@@ -75,21 +75,21 @@ public class MyService extends Service {
         public void run() {
             try {
                 Log.d("TCP", "C: Connecting ... ");
-                inetSocket = new Socket(serverIP, serverPort);
+                inetSocket = new Socket(serverIP, serverPort); // 로봇 서버와 소켓 연결
                 try {
                     Log.d("TCP", "C: Sending ... " + msg);
-                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(inetSocket.getOutputStream())), true);
+                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(inetSocket.getOutputStream())), true); // 서버로 호수 데이터 전송
                     out.println(msg);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(inetSocket.getInputStream()));
+                    BufferedReader in = new BufferedReader(new InputStreamReader(inetSocket.getInputStream())); // 메시지 수신
 
                     rmsg = in.readLine();
                     Log.d("TCP", "C: Server send to me this message --> " + rmsg);
 
                     String m = name + "님에게 배송이 완료되었습니다.";
                     SmsManager sms = SmsManager.getDefault();
-                    sms.sendTextMessage(phoneNum, null, m, null, null);
+                    sms.sendTextMessage(phoneNum, null, m, null, null); // 수취인에게 SMS 전송
 
-                    Intent intent = new Intent(MyService.this, CompleteActivity.class);
+                    Intent intent = new Intent(MyService.this, CompleteActivity.class); // 완료 Activity로 이동
                     startActivity(intent);
                 } catch (Exception e) {
                     Log.e("TCP", "C: Error1", e);

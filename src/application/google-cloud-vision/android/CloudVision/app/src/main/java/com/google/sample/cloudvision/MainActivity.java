@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mMainImage;
     private EditText editNumber;
 
-    public ArrayList<UserData> userList;
+    public ArrayList<UserData> userList; // 수취인 목록
     private String mJsonString;
 
     private ImageView guide1, guide2, guide3;
@@ -185,31 +185,11 @@ public class MainActivity extends AppCompatActivity {
         IP = "";
 
 
-        //DB 데이터 가져오기
+        //DB 데이터를 가져와 userList 객체로 생성
         GetData task = new GetData();
-        task.execute("http://13.209.74.128/getjson.php", "");
+        task.execute("http://*.*.*.*/getjson.php", "");
 
-        UserData u1 = new UserData();
-        u1.setName("박종건");
-        u1.setNumber("01071672699");
-        u1.setAddress("A1406");
-
-        UserData u2 = new UserData();
-        u2.setName("홍길동");
-        u2.setNumber("010-1111-1111");
-        u2.setAddress("A1404");
-
-        userList.add(u1);
-        userList.add(u2);
-        userList.add(u3);
-        userList.add(u4);
-        userList.add(u5);
-        userList.add(u6);
-        userList.add(u7);
-        userList.add(u8);
-        userList.add(u9);
-
-        fab.setOnClickListener(view -> {
+        fab.setOnClickListener(view -> { // 카메라
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder
                     .setMessage(R.string.dialog_select_prompt)
@@ -219,21 +199,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        // 택배 전송 버튼
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mMainImage.setImageBitmap(null);
-//                editNumber.setVisibility(View.GONE);
-//                sendButton.setVisibility(View.GONE);
-//                description.setText("전송 요청을 보냈습니다.");
-
-                real_address = editNumber.getText().toString();
+                real_address = editNumber.getText().toString(); // EditText에 작성된 호수 데이터를 저장
 
                 String name = "";
                 String phoneNum = "";
                 for(int i = 0; i < userList.size(); i++) {
-                    if(userList.get(i).getAddress().equals(real_address)) {
+                    if(userList.get(i).getAddress().equals(real_address)) { // 해당 호수에 있는 수취인을 찾음
                         name = userList.get(i).getName();
                         phoneNum = userList.get(i).getNumber();
                     }
@@ -241,10 +216,10 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "배송 시작", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MyService.class);
+
                 intent.putExtra("address", real_address);
                 intent.putExtra("name", name);
                 intent.putExtra("number", phoneNum);
-
                 intent.putExtra("IP", IP);
 
                 startService(intent);
@@ -296,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
 
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
@@ -474,10 +448,6 @@ public class MainActivity extends AppCompatActivity {
 
         VisionRequestInitializer requestInitializer =
                 new VisionRequestInitializer(CLOUD_VISION_API_KEY) {
-                    /**
-                     * We override this so we can inject important identifying fields into the HTTP
-                     * headers. This enables use of a restricted cloud platform API key.
-                     */
                     @Override
                     protected void initializeVisionRequest(VisionRequest<?> visionRequest)
                             throws IOException {
@@ -566,14 +536,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 int start = result.indexOf("공학관");
-                int end = result.indexOf("호");
 
-//                while (start > end) {
-//                    int num = result.substring(end + 1).indexOf("호");
-//                    end += num + 1;
-//                }
-
-//                real_address = result.substring((start + 4), end);
                 if (result.charAt(start + 4) == 'A') {
                     real_address = result.substring((start + 4), (start + 9));
                 }
@@ -635,10 +598,6 @@ public class MainActivity extends AppCompatActivity {
         List<EntityAnnotation> labels = response.getResponses().get(0).getTextAnnotations();
         if (labels != null) {
             message.append(labels.get(0).getDescription());
-            //for (EntityAnnotation label : labels) {
-                //message.append(String.format(Locale.US, "%.3f: %s", label.getScore(), label.getDescription()));
-                //message.append("\n");
-            //}
         } else {
             message.append("nothing");
         }
