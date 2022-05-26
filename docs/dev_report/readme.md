@@ -10,8 +10,8 @@
 
 ## Week_01
 [2022-03-03](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_01/2022-03-03.md) </br>
+[2022-03-04](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_01/2022-03-04.md) </br>
 [2022-03-05](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_01/2022-03-05.md) </br>
-[2022-03-06](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_01/2022-03-06.md) </br>
 
 ## Week_02
 [2022-03-06](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_02/2022-03-06.md) </br>
@@ -20,6 +20,7 @@
 [2022-03-10](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_02/2022-03-10.md) </br>
 
 ## Week_03
+[2022-03-15](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_03/2022-03-15.md) </br>
 [2022-03-17](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_03/2022-03-17.md) </br>
 [2022-03-18](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_03/2022-03-18.md) </br>
 
@@ -33,13 +34,18 @@
 
 ## Week_06
 [2022-04-05](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_06/2022-04-05.md) </br>
+[2022-04-06](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_06/2022-04-06.md) </br>
 [2022-04-07](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_06/2022-04-07.md) </br>
 
 ## Week_09
 [2022-04-25](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_09/2022-04-25.md) </br>
 [2022-04-26](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_09/2022-04-26.md) </br>
 
+## Week_10
+[2022-05-06](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_10/2022-05-06.md) </br>
+
 ## Week_11
+[2022-05-11](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_11/2022-05-11.md) </br>
 [2022-05-14](https://github.com/DeliveryBotCapstone/DeliveryBot/blob/main/docs/dev_report/week_11/2022-05-14.md) </br>
 
 ## Week_12
