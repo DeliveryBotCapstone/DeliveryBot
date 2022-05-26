@@ -31,9 +31,31 @@
  
  애플리케이션의 중요 기능인 송장 인식 기술로써 GOOGLE CLOUD VISION API - OCR을 사용.<br />
  택배 이미지 내, 모든 텍스트를 JSON포맷으로 추출, 호수 부분만 추출하여 애플리케이션 화면에 출력, 로봇 서버에게 위치 전송을 담당. 
- #### 호수 추출 예시
+
+코드 예시
+ ```java
+ private void callCloudVision(final Bitmap bitmap) {
+        // Switch text to loading
+        description.setText(R.string.loading_message);
+        description.setVisibility(View.VISIBLE);
+
+        // Do the real work in an async task, because we need to use the network anyway
+        try {
+            AsyncTask<Object, Void, String> labelDetectionTask = new LableDetectionTask(this, prepareAnnotationRequest(bitmap));
+            labelDetectionTask.execute();
+        } catch (IOException e) {
+            Log.d(TAG, "failed to make API request because of other IOException " +
+                    e.getMessage());
+        }
+    }
+  ```
  
+ 
+ #### 호수 추출 예시
  ![KakaoTalk_20220412_005820577](https://user-images.githubusercontent.com/70936623/170510971-6daa90dd-ef9d-4ceb-85bf-47fa2cd522c4.png)
+ 
+ 
+ 
  ### SOCKET PROGRAMING
  * 자바에서 제공하는 라이브러리를 이용한 소켓프로그래밍
  * TCP 통신 대기중인 로봇 서버와 통신
@@ -42,6 +64,8 @@
  * 안드로이드에서 제공하는 라이브러리
  * SMS 를 전송하는 주체
  * 로봇 서버에서 성공메시지를 받은 직후 데이터베이스에 있는 전화번호로 SMS 전송
+ 
+ 코드 예시
  ``` java
  import android.telephony.SmsManager;
  SmsManager sms = SmsManager.getDefault();
