@@ -42,6 +42,11 @@
  * 안드로이드에서 제공하는 라이브러리
  * SMS 를 전송하는 주체
  * 로봇 서버에서 성공메시지를 받은 직후 데이터베이스에 있는 전화번호로 SMS 전송
+ ``` java
+ import android.telephony.SmsManager;
+ SmsManager sms = SmsManager.getDefault();
+                    sms.sendTextMessage(phoneNum, null, m, null, null);
+ ```
  
  ### BACKGROUND 재생
  
