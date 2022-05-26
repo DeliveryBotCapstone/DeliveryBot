@@ -1,10 +1,8 @@
 
 # Database Server
- ### DIAGRAM
- ![캡처](https://user-images.githubusercontent.com/70936623/170521827-18e388e0-d09b-4712-9ade-11d95f9011de.PNG)
-
- 
- 
+## 환경
+ DIAGRAM<br/>
+ ![캡처](https://user-images.githubusercontent.com/70936623/170521827-18e388e0-d09b-4712-9ade-11d95f9011de.PNG)<br/>
  
  TOOLS
  
@@ -22,6 +20,13 @@
   ▲ 실제 DB 레코드 삽입 페이지 <br /><br />
   ![DB](https://user-images.githubusercontent.com/70936623/170523189-3d13a036-3fc5-4627-b209-a407cca4b81e.PNG)<br />
   ▲ 실제 DB 화면 <br /><br />
+  
+  ## SOCKET
+  TOOL<br />
+  ![images](https://user-images.githubusercontent.com/70936623/170528091-7e66389a-8bf2-4a6f-ae90-114e2200c78f.png)<br />
+  
+
+  
 
 
 
