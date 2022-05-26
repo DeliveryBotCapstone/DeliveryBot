@@ -20,8 +20,7 @@
 
  application
  │── server
- │   │── database
- │   └── socket.c
+ │   └─ database
  └── google-cloud-vision/android
  ```  
 
