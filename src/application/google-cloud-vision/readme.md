@@ -24,3 +24,13 @@
 ![ㅌㅊㅌㅍㅌㅊㅍㅌ](https://user-images.githubusercontent.com/70936623/170524457-0db6077d-534d-454a-8b47-bc103a5f528f.PNG)
 ![ㅁㄴㅇㄻ](https://user-images.githubusercontent.com/70936623/170524247-cc166939-ed45-4bfa-ad1f-eb012f6bc856.PNG)
 ## BACK-END
+### OCR
+![cvision](https://user-images.githubusercontent.com/70936623/170508987-cf81a69b-2e3f-4a63-a3c6-833cbbec1434.png)<br />
+ 
+ [CLOUD-VISION 공식 GITHUB](https://github.com/GoogleCloudPlatform/cloud-vision)
+ 
+ 애플리케이션의 중요 기능인 송장 인식 기술로써 GOOGLE CLOUD VISION API - OCR을 사용.<br />
+ 택배 이미지 내, 모든 텍스트를 JSON포맷으로 추출, 호수 부분만 추출하여 애플리케이션 화면에 출력, 로봇 서버에게 위치 전송을 담당. 
+ * 호수 추출 예시
+ 
+ ![KakaoTalk_20220412_005820577](https://user-images.githubusercontent.com/70936623/170510971-6daa90dd-ef9d-4ceb-85bf-47fa2cd522c4.png)
