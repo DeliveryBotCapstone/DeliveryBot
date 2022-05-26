@@ -1,6 +1,6 @@
 <?php  
 
-$con=mysqli_connect("localhost","ostus", "748596", "ostus"); 
+$con=mysqli_connect("","", "", ""); 
 mysqli_set_charset($con,"utf8");
 
   
