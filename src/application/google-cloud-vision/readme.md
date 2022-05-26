@@ -60,6 +60,34 @@
  * 자바에서 제공하는 라이브러리를 이용한 소켓프로그래밍
  * TCP 통신 대기중인 로봇 서버와 통신
  * 로봇 서버를 통해 성공메시지 전송받음 -> 사용자 정보를 토대로 배송 완료 메시지 전달
+
+```java
+
+    private class TCPclient implements Runnable {
+        private final String serverIP = IP;
+        private static final int serverPort = 1111;
+        private Socket inetSocket = null;
+        private String msg;
+        private String phoneNum = number;
+
+        public TCPclient(String msg) {
+            this.msg = msg;
+        }
+
+        public void run() {
+            try {
+                Log.d("TCP", "C: Connecting ... ");
+                inetSocket = new Socket(serverIP, serverPort);
+                try {
+                    Log.d("TCP", "C: Sending ... " + msg);
+                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(inetSocket.getOutputStream())), true);
+                    out.println(msg);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(inetSocket.getInputStream()));
+                    ```
+```
+
+
+
  ### SMS Manager
  * 안드로이드에서 제공하는 라이브러리
  * SMS 를 전송하는 주체
