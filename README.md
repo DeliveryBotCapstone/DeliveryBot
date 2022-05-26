@@ -47,6 +47,9 @@
 
 <br /><br />
 
+## 시연 영상
+[https://www.youtube.com/watch?v=XhUObdi2C0I](https://www.youtube.com/watch?v=XhUObdi2C0I)
+
 ## 프로젝트 관련 설명 바로가기 
 
 ## [Go Wiki](/src)  
