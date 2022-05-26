@@ -53,6 +53,8 @@
  #### Google-Cloud-Vision
  ![cvision](https://user-images.githubusercontent.com/70936623/170508987-cf81a69b-2e3f-4a63-a3c6-833cbbec1434.png)
  
+ [CLOUD-VISION 공식 GITHUB](https://github.com/GoogleCloudPlatform/cloud-vision)
+ 
  애플리케이션의 중요 기능인 송장 인식 기술로써 GOOGLE CLOUD VISION API - OCR을 사용.
  
  택배 이미지 내, 모든 텍스트를 JSON포맷으로 추출, 호수 부분만 추출하여 애플리케이션 화면에 출력, 로봇 서버에게 위치 전송을 담당. 
