@@ -31,6 +31,10 @@
  
  ### FRONT-END
  #### DESIGN
+ ##### LOGO
+ ![logo](https://user-images.githubusercontent.com/70936623/170500824-c1c2ebf9-d54e-45b4-9777-20babfb4cd97.png)
+* 택배 배송의 취지에 맞게, 택배 수화물로 대표되는 상자모양 이모티콘을 메인 로고로 디자인함.
+* 한림대학교의 상징색인, 파란색과 청록색을 사용하여, 한림대 학생들의 작품이란 것을 보여줌
  
  
  
