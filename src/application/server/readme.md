@@ -22,7 +22,7 @@
   ▲ 실제 DB 화면 <br /><br />
   
   ## SOCKET
-  TOOL<br />
+  ### TOOL<br />
   ![images](https://user-images.githubusercontent.com/70936623/170528091-7e66389a-8bf2-4a6f-ae90-114e2200c78f.png)<br />
   * 애플리케이션과 로봇 서버간 통신을 위한 소켓프로그래밍.
   * 애플리케이션이 수취인에게 SMS를 보내기 위한 수취인 정보 제공함.
