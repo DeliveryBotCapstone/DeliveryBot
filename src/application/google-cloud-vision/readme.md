@@ -61,28 +61,24 @@
  * 로봇 서버를 통해 성공메시지 전송받음 -> 사용자 정보를 토대로 배송 완료 메시지 전달
 
 ```java
-
-    private class TCPclient implements Runnable {
-        private final String serverIP = IP;
-        private static final int serverPort = 1111;
-        private Socket inetSocket = null;
-        private String msg;
-        private String phoneNum = number;
-
-        public TCPclient(String msg) {
-            this.msg = msg;
-        }
-
-        public void run() {
-            try {
+try {
                 Log.d("TCP", "C: Connecting ... ");
-                inetSocket = new Socket(serverIP, serverPort);
+                inetSocket = new Socket(serverIP, serverPort); // 로봇 서버와 소켓 연결
                 try {
                     Log.d("TCP", "C: Sending ... " + msg);
-                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(inetSocket.getOutputStream())), true);
+                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(inetSocket.getOutputStream())), true); // 서버로 호수 데이터 전송
                     out.println(msg);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(inetSocket.getInputStream()));
-                    ```
+                    BufferedReader in = new BufferedReader(new InputStreamReader(inetSocket.getInputStream())); // 메시지 수신
+                    rmsg = in.readLine();
+                    Log.d("TCP", "C: Server send to me this message --> " + rmsg);
+                } catch (Exception e) {
+                    Log.e("TCP", "C: Error1", e);
+                } finally {
+                    inetSocket.close();
+                }
+            } catch (Exception e) {
+                Log.e("TCP", "C: Error2", e);
+            }
 ```
 
 
@@ -99,17 +95,6 @@
  ```
  
  ### BACKGROUND 재생
- * 애플리케이션 화면이 닫혀도 SMS 발송이 가능하게함
+ * 애플리케이션 화면이 닫혀도 SMS 발송이 가능하게 함
  * Thread를 이용한 프로그래밍
  * 화면이 닫혀도 백그라운드에서 실행 -> SMS의 정상적인 발신 가능
- ```java
-  protected String doInBackground(String... params) {
-            String serverURL = params[0];
-            String postParameters = "country=" + params[1];
-
-            try {
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                ```
-```
-
