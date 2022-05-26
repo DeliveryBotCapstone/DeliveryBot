@@ -101,49 +101,6 @@
   * 로봇 서버와 애플리케이션 간 통신을 하기위한 자바 소켓프로그래밍<br />
   * 송장에서 추출한 호수를 로봇 서버에 전달, 데이터베이스 에서 가져온 사용자 정보를 토대로, 배송 완료 SMS를 수취인에게 전달한다.<br />SMS 전송은 안드로이드 제공하는 라이브러리인 SMS Manager를 사용하여 전송.
  
- ``` java
- private class TCPclient implements Runnable {
-        private final String serverIP = IP;
-        private static final int serverPort = 1111;
-        private Socket inetSocket = null;
-        private String msg;
-        private String phoneNum = number;
-
-        public TCPclient(String msg) {
-            this.msg = msg;
-        }
-
-        public void run() {
-            try {
-                Log.d("TCP", "C: Connecting ... ");
-                inetSocket = new Socket(serverIP, serverPort);
-                try {
-                    Log.d("TCP", "C: Sending ... " + msg);
-                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(inetSocket.getOutputStream())), true);
-                    out.println(msg);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(inetSocket.getInputStream()));
-
-                    rmsg = in.readLine();
-                    Log.d("TCP", "C: Server send to me this message --> " + rmsg);
-
-                    String m = name + "님에게 배송이 완료되었습니다.";
-                    SmsManager sms = SmsManager.getDefault();
-                    sms.sendTextMessage(phoneNum, null, m, null, null);
-
-                    Intent intent = new Intent(MyService.this, CompleteActivity.class);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Log.e("TCP", "C: Error1", e);
-                } finally {
-                    inetSocket.close();
-                }
-            } catch (Exception e) {
-                Log.e("TCP", "C: Error2", e);
-            }
-        }
-    }
- ```
-
 <br />
 
  ## 안드로이드 어플리케이션 WIKI 바로가기
