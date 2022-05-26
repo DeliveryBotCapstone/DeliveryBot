@@ -24,9 +24,9 @@
 ```ruby   
 
  application
- │── server
+ │── server # 데이터베이스 서버 저장 
  │   └─ database
- └── google-cloud-vision/android
+ └── google-cloud-vision/android # 어플리케이션 구현
  ```  
 
 <br /><br />
