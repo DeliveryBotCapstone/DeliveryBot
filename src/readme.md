@@ -6,7 +6,7 @@
 ## Project Hierachy
 ```ruby   
 
- DeleveryBot
+ DeliveryBot
  │── Robot
  │   │── HW
  │   │── SW
