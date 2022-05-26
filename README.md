@@ -36,6 +36,10 @@
 ### 어플리케이션
 ![슬라이드8](https://user-images.githubusercontent.com/83500747/170278154-0b21d2fa-4079-4939-8f56-f9e6e21549f0.PNG)
 
+<br />
+
+## 프로젝트 관련 설명 바로가기 
+
 ## [Go Wiki](/src)  
 
 ## 일정표
