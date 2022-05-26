@@ -102,4 +102,14 @@
  * 애플리케이션 화면이 닫혀도 SMS 발송이 가능하게함
  * Thread를 이용한 프로그래밍
  * 화면이 닫혀도 백그라운드에서 실행 -> SMS의 정상적인 발신 가능
- 
+ ```java
+  protected String doInBackground(String... params) {
+            String serverURL = params[0];
+            String postParameters = "country=" + params[1];
+
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                ```
+```
+
