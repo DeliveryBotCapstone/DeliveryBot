@@ -1,17 +1,17 @@
 
 # Database Server
 ## 환경
- DIAGRAM<br/>
+ ### DIAGRAM<br/>
  ![캡처](https://user-images.githubusercontent.com/70936623/170521827-18e388e0-d09b-4712-9ade-11d95f9011de.PNG)<br/>
  
- TOOLS
+ ### TOOLS
  
  ![EC@](https://user-images.githubusercontent.com/70936623/170514737-1711570f-73e5-46cd-8ca4-a958a4ad9999.png)![그림1](https://user-images.githubusercontent.com/70936623/170514848-e57e56c9-0cd7-47ab-b46c-f28616d7e500.png)![그림2](https://user-images.githubusercontent.com/70936623/170514858-9ba81889-08c9-42b9-a704-b0ff6cedaca7.png)<br />
  * 전체적인 애플리케이션의 데이터베이스 서버는 AWS EC2를 기반으로 데이터 베이스 서버를 구축<br />
  * 안드로이드의 보안상 이유로 EC2 내 UBUNTU 서버와 애플리케이션간 직접적인 연결의 제약이 있기 때문에, 웹 서버인 NGINX 를 중계 서버로 두어 애플리케이션의 외부 데이터베이스 접근과 보안 부분의 안전성을 확보함.<br />
  
  ## DATA BASE
- TOOLS
+ ### TOOLS
  
  ![그림3](https://user-images.githubusercontent.com/70936623/170515160-c380036e-b70f-4c70-a67c-f9418b0167f0.png)<br />
  ▲ EC2 내부에 구축되어있는 데이터 베이스<br />
