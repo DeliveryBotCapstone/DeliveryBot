@@ -6,7 +6,8 @@
  
  ### TOOLS
  
- ![EC@](https://user-images.githubusercontent.com/70936623/170514737-1711570f-73e5-46cd-8ca4-a958a4ad9999.png)![그림1](https://user-images.githubusercontent.com/70936623/170514848-e57e56c9-0cd7-47ab-b46c-f28616d7e500.png)![그림2](https://user-images.githubusercontent.com/70936623/170514858-9ba81889-08c9-42b9-a704-b0ff6cedaca7.png)<br />
+ ![EC@](https://user-images.githubusercontent.com/70936623/170514737-1711570f-73e5-46cd-8ca4-a958a4ad9999.png)![그림1](https://user-images.githubusercontent.com/70936623/170514848-e57e56c9-0cd7-47ab-b46c-f28616d7e500.png)![그림2](https://user-images.githubusercontent.com/70936623/170514858-9ba81889-08c9-42b9-a704-b0ff6cedaca7.png)<br /><br />
+ 
 * 애플리케이션의 데이터베이스(DB) 서버는 Amazon Web Services(AWS) EC2에서 Ubuntu Server를 생성하여 내부에 MySQL을 통해 구축하였다.
 * 추가로 Ubuntu Server에 NGINX 웹 서버를 구축하였는데 이는 안드로이드에서 보안 상의 이유로 단말에서 외부 데이터베이스에 직접 접근할 수 없기 때문이다.
 
@@ -33,7 +34,13 @@
   ▲ 실제 DB 화면 <br /><br />
 
 
-  
+ ## USER TABLE
+ 
+| 열 이름 | 데이터 형식 | 
+| :--------: | :--------: |
+| name | VARCHAR(20) | 
+| number | VARCHAR(20) | 
+| address | VARCHAR(20) |
 
 
 
