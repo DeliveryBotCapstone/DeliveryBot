@@ -49,6 +49,8 @@
 * SMS 발송과 수화물 배달 완료화면  
 #### 결과 화면 
 
+------------------
+
 ### BACK-END
  #### Google-Cloud-Vision
  ![cvision](https://user-images.githubusercontent.com/70936623/170508987-cf81a69b-2e3f-4a63-a3c6-833cbbec1434.png)
@@ -61,12 +63,24 @@
  * 호수 추출 예시
  
  ![KakaoTalk_20220412_005820577](https://user-images.githubusercontent.com/70936623/170510971-6daa90dd-ef9d-4ceb-85bf-47fa2cd522c4.png)
-  
-  송장 전체 촬영시 호수 텍스트 추출이 잘 됨을 보임
+
+ #### SERVER
+ TOOLS
+ 
+ ![EC@](https://user-images.githubusercontent.com/70936623/170514737-1711570f-73e5-46cd-8ca4-a958a4ad9999.png)![그림1](https://user-images.githubusercontent.com/70936623/170514848-e57e56c9-0cd7-47ab-b46c-f28616d7e500.png)![그림2](https://user-images.githubusercontent.com/70936623/170514858-9ba81889-08c9-42b9-a704-b0ff6cedaca7.png)
+ 
+ 
+ 
+ 
+ 
+ 
+ #### DATA BASE
+ TOOLS
+ 
+ ![그림3](https://user-images.githubusercontent.com/70936623/170515160-c380036e-b70f-4c70-a67c-f9418b0167f0.png)
+ 
 
  
- #### SERVER
- #### DATA BASE
  #### SOCKET
 
 <br />
