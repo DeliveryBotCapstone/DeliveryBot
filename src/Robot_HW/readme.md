@@ -29,7 +29,7 @@
 
 <img src="./Image/lidar.jpg" width="200">
 
-[YDLIDAR X4 (Store)](https://www.devicemart.co.kr/goods/view?no=12553062)
+[YDLIDAR X4 (Store)](https://www.devicemart.co.kr/goods/view?no=12170775&gclid=Cj0KCQjw2MWVBhCQARIsAIjbwoN9Iv8heMrm4NfHnUY4umkwVT6_VuIS0tY5kDdMlNmJAYiZaz920vIaAkE4EALw_wcB)
 
 <img src="./Image/rpi4.jpg" width="200">
 
