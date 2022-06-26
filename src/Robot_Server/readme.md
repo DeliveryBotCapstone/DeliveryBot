@@ -49,7 +49,7 @@ Mapping 아래 예시처럼 진행 된다.<br>
 
 ```bash
 # 로봇을 원격으로 움직일 수 있는 노드 실행
-$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+$ rosrun turtlebot3_teleop turtlebot3_teleop_key
 ```
 아래와 같이 나오면 성공<br>
 <img src='./Image/teleop.jpg'>
